@@ -19,10 +19,10 @@ public class Q09_Arrays4 {
 					arr[j][k] = 5 + j;
 				} else if (j == 4 && k >= 0 && k <= 4) {
 					arr[j][k] = 13 - k;
-				} else if (j >= 1 && j <= 4 && k == 0) {
-					arr[j][k] = 17 - j;
 				} else if (j == 1 && k >= 0 && k <= 3) {
 					arr[j][k] = 16 + k;
+				} else if (j >= 1 && j <= 4 && k == 0) {
+					arr[j][k] = 17 - j;
 				} else if (k == 3 && j >= 1 && j <= 3) {
 					arr[j][k] = 18 + j;
 				} else if (j == 3 && j >= 1 && j <= 3) {
