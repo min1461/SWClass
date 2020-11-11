@@ -1,11 +1,13 @@
 package OOP;
-
+/*
+ * getter,setter
+ */
 class Car2 {
 	private String color;
 	private int door;// 속성
 
 	// getter + setter
-	public void setColor(String color) { // getter로 부터 Stri`ng Color를 받는다.
+	public void setColor(String color) { // getter로 부터 String Color를 받는다.
 		this.color = color; // 자기자신을 참조하는 객체를 가르키기 위한 접미사(?)
 	}
 
@@ -29,11 +31,7 @@ class Car2 {
 public class CarMainClass2 {
 	public static void main(String[] args) {
 		Car2 avante = new Car2();
-//		avante.door = 2;
-//		avante.color = "black";
-		avante.drive();
-//		System.out.println(avante.door);
-//		System.out.println(avante.color);
+		avante.setColor("파랑");
 		System.out.println(avante.getColor());
 		avante.setDoor(4);
 		System.out.println(avante.getDoor());

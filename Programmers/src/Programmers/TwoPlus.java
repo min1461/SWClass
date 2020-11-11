@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class TwoPlus {
 	public static void main(String[] args) {
 		int[] numbers = { 2, 1, 3, 4, 1 };
-		ssolution(numbers);
-	}
-
+		for (int i = 0; i < numbers.length; i++) {
+			System.out.println(ssolution(numbers));
+		}
 	}
 
 	public static int ssolution(int[] numbers) {
@@ -30,9 +30,7 @@ public class TwoPlus {
 			}
 		}
 		for (int i = 0; i < answer.length; i++) {
-			answer[i] = arr[i];
+			return arr[i];
 		}
-		for(int i = 0; i<answer.length;i++) {
-			return answer[i];
 	}
 }
