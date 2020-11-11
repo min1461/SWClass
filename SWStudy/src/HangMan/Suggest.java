@@ -21,30 +21,33 @@ public class Suggest {
 			}
 		}
 		int sw = 0; // 스위치
-		for (int i = 0;; i++) {
-			System.out.print("글자 입력 : ");
-			String answer = in.nextLine();
-			for (int j = 0; j < half.length; j++) { // 중간배열중에
-				if (question[j].equals(answer)) { // 입력한 값이 정답과 같은 글자가 있으면
-					if (samechar[j] == 1) {
-						System.out.print("이 글자는 이미 입력한 글자입니다.");
+		for (int i = 1; i <= 14; i++) {
+			if (i < 14) {
+				System.out.println(i+"회 시도");
+				System.out.print("글자 입력 : ");
+				String answer = in.nextLine();
+				for (int j = 0; j < half.length; j++) { // 중간배열중에
+					if (question[j].equals(answer)) { // 입력한 값이 정답과 같은 글자가 있으면
+						if (samechar[j] == 1) {
+							System.out.print("이 글자는 이미 입력한 글자입니다.");
+						} else {
+							half[j] = answer;
+							System.out.print(half[j]);
+							sw++;
+							samechar[j] = 1;
+						}
 					} else {
-						half[j] = answer;
 						System.out.print(half[j]);
-						sw++;
-						samechar[j] = 1;
 					}
-				} else {
-					System.out.print(half[j]);
 				}
-			}
-			if (sw == question.length) {
+				if (sw == question.length) {
+					System.out.println("\n\n★★★★★★★★\n정답입니다.\n★★★★★★★★");
+					break;
+				}
 				System.out.println("");
-				System.out.println("★★★★★★★★\n정답입니다.\n★★★★★★★★");
-				break;
+			} else {
+				System.out.println("\n\n★★★★★★★★\n행맨이죽었습니다..\n★★★★★★★★");
 			}
-			System.out.println("");
 		}
-
 	}
 }

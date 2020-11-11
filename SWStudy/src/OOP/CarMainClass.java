@@ -1,4 +1,4 @@
-package CarOOP;
+package OOP;
 
 class Car {
 	String color;
