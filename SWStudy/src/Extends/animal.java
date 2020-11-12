@@ -27,7 +27,7 @@ class fish extends animal {
 	}
 }
 
-class animal {
+public class animal {
 	public void move() {
 		System.out.println("나 잘 움직여!");
 	}
