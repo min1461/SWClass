@@ -4,7 +4,7 @@ public class EXE {
 	/*
 	 * GUI 채팅프로그램 ip주소 192.168.7.139 / port번호 34567
 	 * 
-	 * 이클립스 메모장 ~ notepade.exe (filename) 리눅스 cp aa.txt bb.txt ==> commandline
+	 * 이클립스 메모장 ~ notepad.exe (filename) 리눅스 cp aa.txt bb.txt ==> commandline
 	 * argument(명령행 인자) cp.exe aa.txt
 	 */
 

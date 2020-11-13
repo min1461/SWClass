@@ -1,4 +1,4 @@
-\package Abstraction;
+package Abstraction;
 /* 추상화 (abstraction)
  * 가독성, 다형성 (polymorphism)
  * 			과일
