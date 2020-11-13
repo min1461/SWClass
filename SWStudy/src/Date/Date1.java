@@ -1,15 +1,12 @@
-package Quiz;
-/*
- * Date
- * 100일째 되는날 구하기
- */
+package Date;
+
 import java.util.Date;
 
-public class Q14_Date {
+public class Date1 {
 	public static void main(String[] args) {
-		String[] yoil = {"일","월","화","수","목","금","토"};		// 요일배열
-		Date d1 = new Date();									// 오늘 날짜
-		d1.setDate(d1.getDate()+100-1);							// 100일째 되는날
+		String[] yoil = { "일", "월", "화", "수", "목", "금", "토" };		// 요일배열
+		Date d1 = new Date();											// 오늘 날짜
+		d1.setDate(d1.getDate()+100-1);									// 100일째 되는날
 		// d1의 Date를 set해준다.
 		// 오늘날짜(getDate()+100일째 되는날 -1)
 		

@@ -1,11 +1,11 @@
-package Quiz;
+package Date;
 /*
  * Date
  * 살아온 날 구하기
  */
 import java.util.Date;
 
-public class Q15_Date2 {
+public class Date2 {
 	public static void main(String[] args) {
 		String[] yoil = {"일","월","화","수","목","금","토"};		// 요일배열
 		Date d1 = new Date();									// 오늘 날짜
