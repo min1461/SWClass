@@ -24,7 +24,7 @@ public class Search {
 			}
 		}
 		if (Arrays.binarySearch(arr, num)+count>=0){
-			System.out.println(num + "의 위치는 0번째부터 시작하여 " + Arrays.binarySearch(arr, num) +"번째에 있다.");
+			System.out.println(num + "의 위치는 1번째부터 시작하여 " + Arrays.binarySearch(arr, num) +"번째에 있다.");
 		} else {
 			System.out.println("없다.");
 		}

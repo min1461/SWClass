@@ -29,7 +29,9 @@ public class Class {
 
 		//객체 ★사용2
 		//취소선 - 만든지 오래된 메서드
-		System.out.println(d1.toLocaleString());	// 년도 월 일 ampm 시간 분 초
+		System.out.println(d1.toLocaleString()); 
+		// 한국식 시간 출력
+		// 년도 월 일 ampm 시간 분 초
 		
 		/*
 		 * 자바 스크립트에서도!

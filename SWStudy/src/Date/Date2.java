@@ -15,10 +15,10 @@ public class Date2 {
 //		System.out.println(d100.toGMTString()); 				// 1일 1월 1970년 00시 00분 01초	-> 영국의 천문대 기준시간
 		
 //		Date mybirthday = new Date(/*년,월,일,시,분,초*/); 1000으로나누면 1초->60으로 나누면 1분->60으로 나누면 1시간->24로 나누면 1일
-		Date mybirthday = new Date(1991 - 1900, 11 - 1, 7);
-		System.out.println(mybirthday.getTime()/86400000);		// 1900년을 기준으로 내가 태어난 시간
-		System.out.println(d1.getTime()/86400000);				// 1900년을 기준으로 지금 시간
-		System.out.println(d1.getTime()/86400000-mybirthday.getTime()/86400000);
+		Date mybirthday = new Date(1991 - 1900, 11 - 1, 7);		// 1900년을 기준으로 91년 11월 7일이 되는날을 입력
+		System.out.println(mybirthday.getTime()/86400000);		// 1970년을 기준으로 내가 태어난 시간
+		System.out.println(d1.getTime()/86400000);				// 1970년을 기준으로 지금 시간
+		System.out.println(d1.getTime()/86400000-mybirthday.getTime()/86400000);		// 살아온 시간
 		
 		
 //		String str1 = "오늘은 ";
