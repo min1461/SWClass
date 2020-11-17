@@ -1,7 +1,7 @@
 package Extends;
 
 class parents {
-	protected int diamond;
+	int diamond;
 
 	public void money() {
 		System.out.println("나돈많다.");

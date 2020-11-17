@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * int는 null 사용x integer는 가능
  * int는 연산 o, integer는 unboxing 해야 산술연산 o
  * 		int aa = 30;	 // 스택(Stack)
- *		Integer bb = aa; // 힙(Heap) // auto boxing
- *		int cc = bb;				// auto unboxing
+ *		Integer bb = aa; // 힙(Heap) // auto boxing ( 포장하다 )
+ *		int cc = bb;				// auto unboxing ( 풀다 )
  *
  * sql의 null과 연동시 integer로 연동
  * (참고) integer.parseInt() vs Integer.valueOf()
