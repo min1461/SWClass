@@ -29,6 +29,7 @@ public class HashMaps {
 		System.out.println(hm1.get(300));// 키값입력시 밸류값 출력
 		System.out.println(hm1.keySet());// 키값출력
 		System.out.println(hm1.remove(200));// 키값200에 해당하는 해쉬맵 삭제
+		System.out.println(hm1);
 		System.out.println(hm1.values());// 밸류값출력
 
 		System.out.println("===============");
