@@ -2,7 +2,7 @@ package GUI;
 /*
  * GUI(Graphic User Interface)
  * 
- * AWT(Abstract Window Toolkit)
+ * AWT(Abstract Windowing Toolkit)
  *  - system 중심
  *  - 시스템 gui의 영향을 받으므로 화면출력에 일관성이 없다
  *  - 중량 component(import java.awt.*;)

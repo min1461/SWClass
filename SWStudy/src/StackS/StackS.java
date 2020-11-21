@@ -17,10 +17,10 @@ public class StackS {
 
 		System.out.println(st1);
 
-		//		Iterator<String> itr1 = st1.iterator();		// Iterator로 출력(순서 잘보기!)
-//		while (itr1.hasNext()) {
-//			System.out.println(itr1.next());
-//		}
+				Iterator<String> itr1 = st1.iterator();		// Iterator로 출력(순서 잘보기!)
+		while (itr1.hasNext()) {
+			System.out.println(itr1.next());
+		}
 
 		while (!st1.isEmpty()) {
 			System.out.println(st1.pop());
