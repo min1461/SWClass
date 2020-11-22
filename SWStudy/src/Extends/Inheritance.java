@@ -39,9 +39,9 @@ public class Inheritance {
 		System.out.println("=====c2=======");
 		child c2 = (child)p2;
 		/*
-		 * b2가 child 클래스로 보도록 casting
+		 * p2가 child 클래스로 보도록 casting
 		 */
-//		System.out.println("=====c3=======");
+		System.out.println("=====c3=======");
 //		child c3 = (child)p1; 
 //		c3.car();
 		/*

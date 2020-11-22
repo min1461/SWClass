@@ -22,7 +22,7 @@ class Child7 extends Parent7 {
 	}
 	public Child7(int don) {// 인자있는 생성자
 		super(don); // 상위클래스의 don인자를 받을수 있는 메서드로 간다.
-		System.out.println(don+"억 있다구요!");
+		System.out.println(don+"억 있다구요를레히호!");
 		System.out.println(super.don+"억 있다구요!");
 	}
 }

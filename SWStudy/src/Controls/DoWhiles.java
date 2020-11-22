@@ -1,12 +1,12 @@
 package Controls;
+//		do {
+//			문장들
+//		}while(조건);		//	주로 메뉴 만들때 사용
 
 import java.util.Scanner;
 
 public class DoWhiles {
 	public static void main(String[] args) {
-//		do {
-//			문장들
-//		}while(조건);		//	주로 메뉴 만들때 사용
 		String menu;
 		String str;
 		Scanner in = new Scanner(System.in);

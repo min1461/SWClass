@@ -1,4 +1,5 @@
-package Date;
+package SuperS;
+
 
 public class SuperTest {
 	public static void main(String[] args) {

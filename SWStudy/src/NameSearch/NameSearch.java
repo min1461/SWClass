@@ -1,9 +1,8 @@
-package NameSearch;
+	package NameSearch;
 
 /*
  * 자바 <------>DB
  * 드라이버프로그램(ojdbc6.jar) jdk 
- * 
  */
 import java.awt.Color;
 import java.awt.EventQueue;

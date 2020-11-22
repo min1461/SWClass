@@ -12,7 +12,7 @@ public class changeChar { // 문자 위치 바꾸기!
 	public static void ChangeChar(String[] str) {
 		System.out.print("str : ");
 		for (int i = 0; i < str.length; i++) {
-			System.out.print(str[i]);
+			System.out.print(str[i]); // run configurations으로 입력
 		}
 		System.out.println("");
 		char[] ch = str[0].toCharArray(); // str을 ch배열에 char를 각각 넣어줌

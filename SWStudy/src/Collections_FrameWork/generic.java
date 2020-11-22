@@ -1,4 +1,4 @@
-package Arrays;
+package Collections_FrameWork;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * ArrayList <String> arr3 = new ArrayList<String>();
  * 
  * 객체만 들어갈 경우
- * ArrayList <SMarket> arr3 = new ArrayList<String>();
+ * ArrayList <SMarket> arr3 = new ArrayList<SMarket>();
  */
 public class generic {
 	public static void main(String[] args) {
@@ -22,16 +22,21 @@ public class generic {
 		arr2.add("라면");
 		arr2.add("우유");
 		arr2.add("김밥");
-//		수정은 set
-//		삭제는 remove
+//		추가는 add
+		System.out.println(arr2);
 		
 		arr2.set(1, "과자");
+		System.out.println(arr2);
+//		수정은 set
+		
 		arr2.remove(2);
 		arr2.remove("빵");
-		
 		System.out.println(arr2);
+//		삭제는 remove
+		
+		System.out.println("==========");
 		for(String tmp:arr2) {
-			//for문 초기부터 배열의 끝까지 갈때까지 반복
+			//for문 리스트의 초기부터 리스트의 끝까지 갈때까지 반복
 			System.out.println(tmp);
 		}
 	}

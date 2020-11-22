@@ -13,20 +13,22 @@ public class StackS {
 		st1.push("카레");
 		st1.push("볶음밥");
 		st1.push("뚝배기불고기");
+		// push : 입력(추가)
 		System.out.println(st1.size());
-
 		System.out.println(st1);
 
-				Iterator<String> itr1 = st1.iterator();		// Iterator로 출력(순서 잘보기!)
+		Iterator<String> itr1 = st1.iterator(); // Iterator로 출력(순서 잘보기!)
 		while (itr1.hasNext()) {
 			System.out.println(itr1.next());
+			// Iterator를 이용한 입력순서대로 출력
 		}
-
+		System.out.println("=======");
 		while (!st1.isEmpty()) {
 			System.out.println(st1.pop());
-
+			// stack은 역순으로 출력 pop
 		}
-		System.out.println(st1);	//	 isEmpty가 아닐때까지 pop을 했기 때문에 (empty가 될때까지 pop을 했기때문에) 출력할 내용이 없다.
+		System.out.println("==========");
+		System.out.println(st1); // isEmpty가 아닐때까지 pop을 했기 때문에 (empty가 될때까지 pop을 했기때문에) 출력할 내용이 없다.
 
 	}
 }

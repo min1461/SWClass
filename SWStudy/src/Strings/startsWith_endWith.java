@@ -1,6 +1,6 @@
 package Strings;
 
-public class startsWith {
+public class startsWith_endWith {
 	public static void main(String[] args) {
 		String s1 = "good";
 		if(s1.startsWith("go")) {	//매개변수로 시작하면~

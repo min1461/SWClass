@@ -3,7 +3,7 @@ package Int_integer;
 import java.util.ArrayList;
 
 /*
- * Int vs integer(클래스화)(wrapper)
+ * int vs Integer(클래스화)(wrapper)
  * int는 null 사용x integer는 가능
  * int는 연산 o, integer는 unboxing 해야 산술연산 o
  * 		int aa = 30;	 // 스택(Stack)

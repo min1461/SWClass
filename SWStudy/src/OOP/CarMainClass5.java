@@ -43,8 +43,8 @@ class Car5 {
 public class CarMainClass5 {
 	public static void main(String[] args) {
 		Car5 avante = new Car5("보라",6);
-		System.out.println(avante.toString());		// 디폴트생성자를 이용한 출력문
+		System.out.println(avante.toString());
 //					||
-		System.out.println(avante);
+		System.out.println(avante);		// 디폴트생성자를 이용한 출력문
 	}
 }
