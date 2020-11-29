@@ -45,7 +45,7 @@ public class aa extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();// 지금창 해제//프레임닫기//메모리에 남아있음
-				setVisible(false);// 지금창 안보이게
+//				setVisible(false);// 지금창 안보이게
 				new bb().setVisible(true);
 				// bb객체 생성해서 핸들링
 				/*

@@ -17,12 +17,12 @@ public class LoginB extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			private String id;
+			
 			private String pw;
-
+			private String id;
 			public void run() {
 				try {
-					LoginB frame = new LoginB(id, pw);
+					LoginB frame = new LoginB(id,pw);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,13 +51,6 @@ public class LoginB extends JFrame {
 	}
 
 	public LoginB() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
 	}
 
 }

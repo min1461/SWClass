@@ -22,7 +22,7 @@ interface Uncle { // class가 아닌 interface를 명시
 }
 
 interface aunt extends Uncle {
-	public void iscoffee();
+	public String iscoffee();
 }
 
 class RichMan {
@@ -37,8 +37,9 @@ class na extends RichMan implements /*Uncle,*/ aunt { // implements를 선언
 	}
 
 	@Override
-	public void iscoffee() {
-		System.out.println("커피먹자");
+	public String iscoffee() {
+		String str = "커피먹자";
+		return str;
 	}
 
 	@Override

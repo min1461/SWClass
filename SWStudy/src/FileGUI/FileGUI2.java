@@ -9,11 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 
 public class FileGUI2 extends Frame implements ActionListener {
 	static String s1 = "";
@@ -72,7 +69,7 @@ public class FileGUI2 extends Frame implements ActionListener {
 				FileReader fr = new FileReader("C://workspace_SW/SWStudy/텍스트.txt");
 				//file read - 화면출력(write) //byte readInt
 				String s = null;
-				while((s=fr.readLine())!= null) {
+				while((s=fr.read())!= null) {
 					System.out.println((s));
 				}
 			} catch (FileNotFoundException e) {

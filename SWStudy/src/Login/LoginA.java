@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginA extends JFrame {
 
@@ -50,34 +52,37 @@ public class LoginA extends JFrame {
       contentPane.add(lblNewLabel);
       
       JLabel lblNewLabel_1 = new JLabel("Password");
-      lblNewLabel_1.setBounds(73, 195, 62, 18);
+      lblNewLabel_1.setBounds(73, 195, 81, 18);
       contentPane.add(lblNewLabel_1);
       
       txtID = new JTextField();
-      txtID.setBounds(149, 152, 116, 24);
+      txtID.setBounds(197, 152, 116, 24);
       contentPane.add(txtID);
       txtID.setColumns(10);
       
       txtPW = new JTextField();
-      txtPW.setBounds(149, 192, 116, 24);
+      txtPW.setBounds(197, 192, 116, 24);
       contentPane.add(txtPW);
       txtPW.setColumns(10);
       
       btnNewButton = new JButton("버튼");
+      btnNewButton.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      	}
+      });
       btnNewButton.addMouseListener(new MouseAdapter() {
          @Override
          public void mouseClicked(MouseEvent e) {
             //----------------------------------
-            dispose(); //지금창 해제//프레임을 닫는 것
-            setVisible(false);//지금창 안보이게
-            String id=txtID.getText(); ////////////////
+            dispose();
+            setVisible(false);
+            String id=txtID.getText();
             String pw=txtPW.getText(); 
             new LoginB(id,pw).setVisible(true); 
             //-----------------------------------
          }
-         
       });
-      btnNewButton.setBounds(91, 71, 105, 27);
+      btnNewButton.setBounds(73, 88, 240, 44);
       contentPane.add(btnNewButton);
    }
 }
