@@ -1,19 +1,25 @@
 package Customer;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Administor.TestMouse;
+import Data.TestMouse;
 import wowtest.OracleTest;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class Page5 extends JFrame {
 	public static int[][] arr = new int[5][14];
@@ -57,6 +63,7 @@ public class Page5 extends JFrame {
 	}
 
 	public void test() {
+		setTitle("좌석을 선택하세요.");
 		adult = Page4.adult;
 		child = Page4.child;
 		dateCheck = Page3.dateCheck;
@@ -76,23 +83,22 @@ public class Page5 extends JFrame {
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		int aa = 0;
 		for (j = 0; j < 5; j++) {
 			String str = "";
-			if(j==0) {
+			if (j == 0) {
 				str = "A";
-			}else if(j==1) {
+			} else if (j == 1) {
 				str = "B";
-			}else if(j==2) {
+			} else if (j == 2) {
 				str = "C";
-			}else if(j==3) {
+			} else if (j == 3) {
 				str = "D";
-			}else {
+			} else {
 				str = "E";
 			}
 			for (i = 0; i <= 13; i++) {
-				JButton a = new JButton(str + i);
+				JButton a = new JButton(str + i+1);
 				a.addMouseListener(new TestMouse(j, i) {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -107,10 +113,13 @@ public class Page5 extends JFrame {
 							count++;
 						} else if (count == totalperson && arr[x][y] == 1) {
 							JOptionPane.showMessageDialog(null, "예약인원을 초과하였습니다.\r\n예매완료를 눌러주세요.");
-						} else if (arr[x][y] == 2) {
-							JOptionPane.showMessageDialog(null, "이미 예약이 완료된 자리입니다.");
-						} else if (count==totalperson){
+						} else if (count == totalperson) {
 							JOptionPane.showMessageDialog(null, "예약인원을 초과하였습니다.\r\n예매완료를 눌러주세요.");
+						} else if (arr[x][y] == 1) {
+							JOptionPane.showMessageDialog(null,
+									"이미 선택한 좌석입니다.\r\n" + (totalperson - count) + "개의 좌석을 더 선택해주세요");
+						} else if (arr[x][y] == 2) {
+							JOptionPane.showMessageDialog(null, "이미 예약이 완료된 좌석입니다.");
 						}
 					}
 				});
@@ -136,32 +145,38 @@ public class Page5 extends JFrame {
 			}
 		}
 		JButton btnNewButton = new JButton("예매완료");
+		btnNewButton.setBounds(1111, 446, 150, 60);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				OracleTest ot = new OracleTest();
-				for (int i = 0; i < arr.length; i++) {
-					for (int j = 0; j < arr[i].length; j++) {
-						arr[i][j] = 0;
+				if (totalperson > count) {
+					JOptionPane.showMessageDialog(null, "총 예약인원은" + totalperson + "명입니다.\r\n좌석을 더 선택해주세요.");
+				} else {
+					OracleTest ot = new OracleTest();
+					for (int i = 0; i < arr.length; i++) {
+						for (int j = 0; j < arr[i].length; j++) {
+							arr[i][j] = 0;
+						}
 					}
+					count = 0;
+					try {
+						this.finalize();
+					} catch (Throwable e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					ot.insertSeat(movieSeq, list);
+					dispose();
+					setVisible(false);
+					new Page6().setVisible(true);
 				}
-				count = 0;
-				try {
-					this.finalize();
-				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				ot.insertSeat(movieSeq, list);
-				dispose();
-				setVisible(false);
-				new Page6().setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(1111, 532, 150, 60);
+		contentPane.setLayout(null);
 		contentPane.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("\uC120\uD0DD\uCDE8\uC18C");
+		btnNewButton_1.setBounds(1111, 535, 150, 60);
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -172,13 +187,34 @@ public class Page5 extends JFrame {
 						}
 					}
 				}
-				count=0;
+				count = 0;
 				setVisible(false);
 				new Page5().setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(1111, 621, 150, 60);
 		contentPane.add(btnNewButton_1);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(263, 0, 715, 35);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblScreen = new JLabel("S C R E E N");
+		lblScreen.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
+		lblScreen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblScreen.setBounds(245, 0, 225, 35);
+		panel.add(lblScreen);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(1313, 57, 35, 200);
+		contentPane.add(panel_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBounds(46, 686, 200, 35);
+		contentPane.add(panel_2);
 
 		this.setVisible(true);
 	}

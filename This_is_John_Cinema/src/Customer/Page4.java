@@ -3,11 +3,14 @@ package Customer;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -38,6 +41,8 @@ public class Page4 extends JFrame {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 
+	private JLabel textField;
+
 	/**
 	 * Launch the application.
 	 */
@@ -60,14 +65,43 @@ public class Page4 extends JFrame {
 	public Page4() {
 		setTitle("인원을 선택하세요");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 768);
+		setBounds(100, 100, 430, 768);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.control);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		comboBox.setBackground(SystemColor.control);
-		comboBox.setForeground(Color.BLACK);
+		setResizable(false);
+		contentPane.setLayout(null);
+		contentPane.setLayout(null);
+
+		textField = new JLabel();
+		textField.setBounds(149, 87, 117, 20);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setFont(new Font("HY견고딕", Font.PLAIN, 16));
+		textField.setForeground(Color.WHITE);
+		textField.setBackground(Color.BLACK);
+		contentPane.add(textField);
+
+		lblNewLabel = new JLabel("성인");
+		lblNewLabel.setBounds(32, 147, 160, 48);
+		contentPane.add(lblNewLabel);
+		lblNewLabel.setForeground(Color.ORANGE);
+		lblNewLabel.setBackground(SystemColor.control);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("HY헤드라인M", Font.BOLD, 30));
+
+		lblNewLabel_1 = new JLabel("청소년");
+		lblNewLabel_1.setBounds(224, 147, 160, 48);
+		contentPane.add(lblNewLabel_1);
+		lblNewLabel_1.setForeground(Color.ORANGE);
+		lblNewLabel_1.setBackground(SystemColor.control);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.BOLD, 30));
+		comboBox.setBounds(32, 226, 160, 37);
+		contentPane.add(comboBox);
+		comboBox.setBackground(Color.BLACK);
+		comboBox.setForeground(Color.ORANGE);
 
 		comboBox.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		comboBox.addActionListener(new ActionListener() {
@@ -92,10 +126,11 @@ public class Page4 extends JFrame {
 				}
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5"}));
-		comboBox.setBounds(100, 241, 190, 37);
-		contentPane.add(comboBox);
-		comboBox_1.setBackground(SystemColor.control);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5" }));
+		comboBox_1.setBounds(224, 226, 160, 37);
+		contentPane.add(comboBox_1);
+		comboBox_1.setForeground(Color.ORANGE);
+		comboBox_1.setBackground(Color.BLACK);
 
 		comboBox_1.setFont(new Font("HY헤드라인M", Font.BOLD, 20));
 		comboBox_1.addActionListener(new ActionListener() {
@@ -123,11 +158,32 @@ public class Page4 extends JFrame {
 		});
 
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5" }));
-		comboBox_1.setBounds(390, 241, 188, 37);
-		contentPane.add(comboBox_1);
+		textArea.setBounds(32, 410, 352, 84);
+		contentPane.add(textArea);
+		textArea.setForeground(Color.ORANGE);
+		textArea.setBackground(Color.BLACK);
+
+		textArea.setFont(new Font("HY헤드라인M", Font.BOLD, 24));
+
+		JButton btnNewButton_1 = new JButton();
+		btnNewButton_1.setBounds(70, 655, 60, 60);
+		contentPane.add(btnNewButton_1);
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				setVisible(false);
+				new Page3().setVisible(true);
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon(Page2_Dialog.class.getResource("/images/iconmonstr-arrow-68-72.png")));
+		btnNewButton_1.setBorderPainted(false); // 외곽선지우기
+		btnNewButton_1.setContentAreaFilled(false); // 채우기안함
+		btnNewButton_1.setFocusPainted(false);
 
 		JButton btnNewButton = new JButton();
-		btnNewButton.setBounds(422, 570, 90, 72);
+		btnNewButton.setBounds(285, 655, 60, 60);
+		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -137,59 +193,32 @@ public class Page4 extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (totalperson == 0) {
-				JOptionPane.showMessageDialog(null, "인원을 선택하세요.");
+					JOptionPane.showMessageDialog(null, "인원을 선택하세요.");
 				} else {
-				dispose();
-				setVisible(false);
-				new Page5(totalperson).setVisible(true);
+					dispose();
+					setVisible(false);
+					new Page5(totalperson).setVisible(true);
 				}
-		}});
-		contentPane.setLayout(null);
-		btnNewButton.setIcon(new ImageIcon(P2_Dialog.class.getResource("/images/iconmonstr-arrow-67-72.png")));
-		btnNewButton.setBorderPainted(false);	// 외곽선지우기
-		btnNewButton.setContentAreaFilled(false); // 채우기안함
-		btnNewButton.setFocusPainted(false);
-		contentPane.add(btnNewButton);
-
-		JButton btnNewButton_1 = new JButton();
-		btnNewButton_1.setBounds(166, 570, 90, 72);
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				setVisible(false);
-				new Page3().setVisible(true);
 			}
 		});
-		contentPane.setLayout(null);
-		btnNewButton_1.setIcon(new ImageIcon(P2_Dialog.class.getResource("/images/iconmonstr-arrow-68-72.png")));
-		btnNewButton_1.setBorderPainted(false);	// 외곽선지우기
-		btnNewButton_1.setContentAreaFilled(false); // 채우기안함
-		btnNewButton_1.setFocusPainted(false);
-		contentPane.add(btnNewButton_1);
-		textArea.setBackground(SystemColor.control);
+		btnNewButton.setIcon(new ImageIcon(Page2_Dialog.class.getResource("/images/iconmonstr-arrow-67-72.png")));
+		btnNewButton.setBorderPainted(false); // 외곽선지우기
+		btnNewButton.setContentAreaFilled(false); // 채우기안함
+		btnNewButton.setFocusPainted(false);
 
+		JPanel panel = new JPanel() {
+			Image background = new ImageIcon(Page4.class.getResource("/images/itest__.png")).getImage();
 
-		textArea.setFont(new Font("HY헤드라인M", Font.BOLD, 30));
-		textArea.setBounds(99, 399, 479, 84);
-		contentPane.add(textArea);
-		
-		lblNewLabel = new JLabel("성인");
-		lblNewLabel.setBackground(SystemColor.control);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("HY헤드라인M", Font.BOLD, 30));
-		lblNewLabel.setBounds(99, 83, 190, 75);
-		contentPane.add(lblNewLabel);
-		
-		lblNewLabel_1 = new JLabel("청소년");
-		lblNewLabel_1.setBackground(SystemColor.control);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("HY헤드라인M", Font.BOLD, 30));
-		lblNewLabel_1.setBounds(388, 83, 190, 75);
-		contentPane.add(lblNewLabel_1);
-		
+			public void paint(Graphics g) {// 그리는 함수
+				g.drawImage(background, 0, 0, null);// background를 그려줌
+			}
+		};
+		panel.setBounds(0, 0, 418, 728);
+		contentPane.add(panel);
+		panel.setLayout(null);
+
 //		JPanel panel = new JPanel() {
-//			Image background = new ImageIcon(MainHome.class.getResource("/images/hand-308374_1280.png")).getImage();
+//			Image background = new ImageIcon(Page4.class.getResource("/images/hand-308374_1280.png")).getImage();
 //
 //			public void paint(Graphics g) {// 그리는 함수
 //				g.drawImage(background, 0, 0, null);// background를 그려줌

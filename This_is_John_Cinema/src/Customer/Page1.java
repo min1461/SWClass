@@ -15,12 +15,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class MainHome extends JFrame implements Runnable {
+public class Page1 extends JFrame implements Runnable {
 
 	private JPanel contentPane;
 	private JLabel textField;
@@ -34,7 +35,7 @@ public class MainHome extends JFrame implements Runnable {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainHome frame = new MainHome();
+					Page1 frame = new Page1();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +47,7 @@ public class MainHome extends JFrame implements Runnable {
 	/**
 	 * Create the frame.
 	 */
-	public MainHome() {
+	public Page1() {
 		setTitle("3조 영화 예매 키오스크");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 768);
@@ -57,26 +58,26 @@ public class MainHome extends JFrame implements Runnable {
 		setResizable(false);
 
 		if (thread == null) {
-			thread = new Thread(this);
+			thread = new Thread(this); 	
 			thread.start();
 		}
 
 		textField = new JLabel();
 		textField.setBounds(293, 275, 762, 133);
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("휴먼편지체", Font.BOLD, 40));
+		textField.setFont(new Font("휴먼편지체", Font.BOLD | Font.ITALIC, 40));
 		contentPane.add(textField);
 
 		lblThisIsJohn = new JLabel("This is John Cinema");
 		lblThisIsJohn.setBounds(345, 164, 657, 121);
 		lblThisIsJohn.setHorizontalAlignment(SwingConstants.CENTER);
-		lblThisIsJohn.setFont(new Font("Ink Free", Font.BOLD, 60));
+		lblThisIsJohn.setFont(new Font("Ink Free", Font.BOLD | Font.ITALIC, 60));
 		contentPane.add(lblThisIsJohn);
 
 		JButton btnNewButton = new JButton("\uC601\uD654 \uC608\uB9E4");
 		btnNewButton.setBounds(800, 410, 228, 63);
 		contentPane.add(btnNewButton);
-		btnNewButton.setFont(new Font("휴먼편지체", Font.BOLD, 40));
+		btnNewButton.setFont(new Font("휴먼편지체", Font.BOLD | Font.ITALIC, 40));
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setFocusPainted(true);
@@ -91,7 +92,7 @@ public class MainHome extends JFrame implements Runnable {
 		btnNewButton.setBackground(Color.white);
 
 		JPanel panel = new JPanel() {
-			Image background = new ImageIcon(MainHome.class.getResource("/images/MainHome.jpg")).getImage();
+			Image background = new ImageIcon(Page1.class.getResource("/images/MainHome.jpg")).getImage();
 
 			public void paint(Graphics g) {// 그리는 함수
 				g.drawImage(background, 0, 0, null);// background를 그려줌
@@ -102,25 +103,23 @@ public class MainHome extends JFrame implements Runnable {
 		panel.setBounds(0, 0, 1348, 721);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 
-		/* 생성자 중간에 끼워넣어야 하는 코드. */
 	}
 
 	@Override
 	public void run() {
 		while (true) {
 			Calendar cal = Calendar.getInstance();
-			String now = cal.get(Calendar.YEAR) + "년 " + (cal.get(Calendar.MONTH) + 1) + "월 " + cal.get(Calendar.DATE)
-					+ "일 " + cal.get(Calendar.HOUR) + "시 " + cal.get(Calendar.MINUTE) + "분 " + cal.get(Calendar.SECOND)
-					+ "초";
+			String now = String.format("%04d", cal.get(Calendar.YEAR)) + "년 " 
+					+ String.format("%02d", (cal.get(Calendar.MONTH) + 1)) + "월 "
+					+ String.format("%02d", cal.get(Calendar.DATE)) + "일 "
+					+ String.format("%02d", cal.get(Calendar.HOUR)) + "시 "
+					+ String.format("%02d", cal.get(Calendar.MINUTE)) + "분 "
+					+ String.format("%02d", cal.get(Calendar.SECOND)) + "초";
 			textField.setText(now);
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

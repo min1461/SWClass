@@ -12,7 +12,5 @@ public class Movie_4{
 			"Beyonce\r\n" + 
 			"James Earl Jones\r\n" + 
 			"Chiwetel Ejiofor\r\n" + 
-			"Seth Aaron Rogen\r\n" + 
-			"Billy Eichner\r\n" + 
-			"Alfre Woodard";
+			"Seth Aaron Rogen\r\n";
 }

@@ -2,7 +2,7 @@ package Data;
 
 public class Movie_2 {
 
-	public static String movie_name = "Extrem Job | 극한직업";
+	public static String movie_name = "극한직업 | Extrem Job";
 	public static int runtime = 111;
 	public static String movie_genre = "Comedy";
 	public static String movie_grade = "15세 관람가";

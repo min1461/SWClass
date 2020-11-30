@@ -1,4 +1,4 @@
-package Administor;
+package Data;
 
 import java.awt.event.MouseAdapter;
 
