@@ -37,7 +37,8 @@ public class TelinfoDAO {
 	}
 
 	public boolean insert_nametel(int id, String name, String tel, String sDate) {
-		String sql = "INSERT INTO TELTABLE2 ORDER BY ID";
+		String sql = "INSERT INTO TELTABLE"
+				+ " VALUES (?,?,?,?)";
 
 		try {
 			ps1 = con.prepareStatement(sql);
@@ -63,7 +64,7 @@ public class TelinfoDAO {
 
 		ArrayList<TelinfoDTO> tiarray1 = new ArrayList<TelinfoDTO>();
 
-		String sql = "SELECT * FROM TELTABLE2";
+		String sql = "SELECT * FROM TELTABLE ORDER BY ID";
 
 		ps1 = con.prepareStatement(sql);
 		rs1 = ps1.executeQuery(sql);
@@ -74,11 +75,41 @@ public class TelinfoDAO {
 			String tel = rs1.getString("tel");
 			Date d = rs1.getDate("d");
 
-			TelinfoDTO tiDTO = new TelinfoDTO(id, name, tel, d);
+			TelinfoDTO tiDTO = new TelinfoDTO(id, name, tel, d);	// 객체 생성
 
-			tiarray1.add(tiDTO);
+			tiarray1.add(tiDTO);	// 컬렉션에 객체 입력
 		}
 
-		return null;
+		return tiarray1;
+	}
+
+	public boolean update_nametel(int id1, String name1, String tel1, String sDate1) {
+		String sql = "UPDATE TELTABLE SET NAME = ?, TEL = ?, D = ? WHERE ID = ?";
+
+		try{
+			ps1=con.prepareStatement(sql);
+			ps1.setString(1, name1);
+			ps1.setString(2, tel1);
+			ps1.setString(3, sDate1);
+			ps1.setInt(4, id1);
+			ps1.executeUpdate();///////////////
+		}catch(SQLException e){
+			System.out.println("update Exception~~~");
+			return false;
+		}
+		return true;
+	}
+
+	public boolean delete_row(int id2) {
+		String sql = "DELETE FROM TELTABLE WHERE ID = ?";
+		try{
+			ps1=con.prepareStatement(sql);
+			ps1.setInt(1, id2);
+			ps1.executeUpdate();//////////
+		}catch(SQLException e){
+			System.out.println("delete Exception~~~");
+			return false;
+		}
+		return true;
 	}
 }
