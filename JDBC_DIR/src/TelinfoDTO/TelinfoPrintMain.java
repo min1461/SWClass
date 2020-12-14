@@ -1,6 +1,7 @@
 package TelinfoDTO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TelinfoPrintMain {
@@ -36,6 +37,19 @@ public class TelinfoPrintMain {
 					System.out.println("insert ok");
 				} else {
 					System.out.println("insert error");
+				}
+				break;
+				
+			case 2:	// 전체 출력 // 객체단위로 취급, 개개의 필드로 취급할거냐?
+					// db=====> 객체=====> 컬렉션에 저장 (컴을 off하지 않는 한 메모리에 남아있다)
+				ArrayList<TelinfoDTO> tiaArray2 = tiDAO.getAllInfo();
+				
+				for(TelinfoDTO imsi : tiaArray2) {
+					System.out.println(imsi.getId());
+					System.out.println(imsi.getName());
+					System.out.println(imsi.getTel());
+					System.out.println(imsi.getD());
+					// 날짜 : 자바날짜면 util, db 날짜면 sql
 				}
 				break;
 
