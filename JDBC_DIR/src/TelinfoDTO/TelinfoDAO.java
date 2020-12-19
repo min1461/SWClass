@@ -62,7 +62,7 @@ public class TelinfoDAO {
 		// PreparedStatement ps1 = null;
 		// ResultSet rs1 = null;
 
-		ArrayList<TelinfoDTO> tiarray1 = new ArrayList<TelinfoDTO>();
+		ArrayList<TelinfoDTO> Tiarray1 = new ArrayList<TelinfoDTO>();
 
 		String sql = "SELECT * FROM TELTABLE ORDER BY ID";
 
@@ -77,10 +77,10 @@ public class TelinfoDAO {
 
 			TelinfoDTO tiDTO = new TelinfoDTO(id, name, tel, d);	// 객체 생성
 
-			tiarray1.add(tiDTO);	// 컬렉션에 객체 입력
+			Tiarray1.add(tiDTO);	// 컬렉션에 객체 입력
 		}
 
-		return tiarray1;
+		return Tiarray1;
 	}
 
 	public boolean update_nametel(int id1, String name1, String tel1, String sDate1) {

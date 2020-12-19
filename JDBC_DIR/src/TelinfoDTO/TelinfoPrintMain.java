@@ -93,11 +93,12 @@ public class TelinfoPrintMain {
 				tiDAO.ps1Close();
 				tiDAO.getAllInfoClose();
 				break;
+				
 			default:
 				System.out.println("해당 메뉴를 확인하고 선택해주세요.");
 				break;
 
 			}
-		} while (sel != 3);
+		} while (sel != 5);
 	}
 }
