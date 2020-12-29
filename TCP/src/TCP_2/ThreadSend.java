@@ -1,4 +1,4 @@
-package TCP;
+package TCP_2;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
