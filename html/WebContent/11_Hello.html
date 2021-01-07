@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+</style>
+</head>
+<body>
+	<!-- -----------------------
+                            request
+        웹브라우저 ----------------
+                        ---------------- 서버
+                            response
+
+        <!-- c-s model(chatting) > web(websocket) -->
+
+	<!-- 서버로 갈때는 -->
+	<!-- www.naver.com -->
+	<!-- http ==> hypertext tranfer protocol -->
+
+	<!-- form action="hello1.jsp" method="get" -->
+	<!-- 서버에 있는 hello1.jsp를 찾아감 기본이 get방식 -->
+
+	<!-- action:서버의 누구를 찾아가는가? ,jsp servlet(.java)-->
+	<!-- method:전송방식(get(기본)), post -->
+
+	<!-- (get) -->
+	<!-- head,body로 처리 -->
+	<!-- head처리 : 이름 전화번호가 노출됨, 작은용량, 길이가 고정(속도가 up) -->
+	<!-- 예)http://.........?name=choi&tel-01088825155 -->
+	<!-- body처리 : 노출안됨, 큰용량, 길이는 당연히 유동, (속도가 down) -->
+
+	<!-- <form action = "hello1.jsp" method="post" -->
+	지금 입력하시는 분 정중히 요청하오니 엔터는 절대로 치지마시고 tab을 눌러주세요.<!-- 안읽을텐데 ? -->
+	<form action="hello1.jsp" method="get">
+		이름 <input type="text" name="irum"> <br>
+		<!-- 글상자, 자바에서 setText() -->
+		전화번호 <input type="text" name="tel"> <br>
+		<input type="button" value="가자서버로" onclick="kaja();"> <!-- 버튼, submit은 서버로 보내자 -->
+		<input type="reset" value="가긴멀가 취소~~~">
+	</form>
+		<!-- (1) html5 특성을 활용한다. 다음예제를 봅시다
+             (2) <input type="button" value="가자서버로" onclick="kaja();">
+                이벤트가 나옴(에러체크하러 자바스크립트문장으로 가자) -->
+</body>
+</html>
+
+<!-- 구분
+    compiler vs interpreter
+    
+    client side    vs       server side
+    
+    개발자가 개발            개발자가 개발
+    실행시 클라이언트감         안감
+    클라이언트 제어하에 실행      서버제어하에 실행됨
+    
+    장점 : 서버의 overhead x    장점 : 보안 o (클라이언트는 소스 x)
+    단점 : 보안적측면         단점 : overhead 
+    (페이지소스보기)
+     -->

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="EUC-KR">
+    <title>insert title here</title>
+        <script> /* 이 안에 있는 모든것은 자바 스크립트다. */
+            //객체.속성=값 ==> 객체.이벤트=이벤트처리함수
+            
+            document.onmousemove=function(){
+                    // 마우스가 움직일때마다 f1의 좌표가 마우스의 좌표와 같게 한다.
+                document.getElementById("f1").style.left=event.clientX+"px"
+                document.getElementById("f1").style.top=event.clientY+"px"
+                /*document.all.f1.style.top=event.clientY+"px";*/
+                // 이건 IE 스타일
+                // IE:document.all.f1//DOM(Document Object Model)
+            }
+        </script>
+    </head>
+    <body>
+        <span id="f1" style="position:absolute;"> <!-- 속성명:값;-->
+            <img src="C:/workspace_SW/html/WebContent/img2/fox.png" border="0" name="krim" width="100px">
+        </span>
+    </body>
+</html>
+<!-- window.screen.width window.screen.height -->
