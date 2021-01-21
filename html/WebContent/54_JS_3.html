@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="./jquery-3.5.1.js"></script>
+<script>
+	var xhr = null;
+	function getXHR() { // xhr함수를 생성하는 메서드
+		try {
+			if (window.XMLHttpRequest) {
+				return new XMLHttpRequest;//ie11,ff,chrome
+				alert("여긴되는가?")
+			} else if (window.ActiveXObject) {//ActiveXObject 구버전
+				return new ActiveXObject("MSXML2.XMLHTTP");//7,8
+			} else {
+				return new ActiveXObject("Microsoft.XMLHTTP");//5이하
+			}
+		} catch (e) {
+			xhr = null;
+		}
+	}
+
+	function kajaServer(url) { // 서버로가는 함수
+		var name = document.getElementById("name").value;
+		var years = document.getElementById("years").value;
+		serverURL = url + "?name=" + encodeURIComponent(name) + "&years="
+				+ years;
+		//encodeURIComponent : name=> %23A =>name
+		xhr = getXHR();
+		xhr.onreadystatechange = callbackFunction;
+		xhr.open("get", serverURL, true);
+		xhr.send(null);
+	}
+
+	function callbackFunction() {
+		var ta = document.getElementById("ta");
+		switch (xhr.readyState) {
+		case 4:
+			ta.value += "결과 다 왔다고 전해라\n";
+			if (xhr.status == 200) {
+				ta.value += "정상으로 옴\n";
+				ta.value += xhr.responseText + "\n";// ↓ responseXML
+			} else {//404,400...
+				ta.value += "에러발생\n";
+			}
+			ta.value += xhr.status + "\t" + xhr.statusText + "\n";
+
+			break;
+		}
+	}
+
+	function kajaClear() {
+		var ta = document.getElementById("ta");
+		ta.value = "";
+	}
+</script>
+</head>
+<body>
+	<h3>AJax kaja - 화면이 바뀌는가?</h3>
+	<br>
+	<textarea id="ta" cols="100" rows="20"></textarea>
+	<br>
+	이름 : <input type="text" id="name"><br>
+	나이 : <input type="text" id="years"><br>
+	<input type="button" value="서버로 가자" onclick="kajaServer('./member.jsp')">
+	<input type="button" value="초기화" onclick="kajaClear()">
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script> /* 이건 팝업창닫았을때 */
+window.onunload=function(){
+	kajaCookie(); /* 함수호출 */
+}
+function kajaCookie(){ /* 함수정의문 */
+	//현재 자스는 기본적으로 계층구조이므로 전체하얀공간.form.체크박스.체크됐냐
+	if(document.f1.chk1.checked == true){ /* 객체.속성 */
+		
+		
+		/* 체크박스를 체크 했으면 쿠키를 만들어서 1일동안 창 열리지 않게 */
+		
+		//내장객체
+		var oneul1 = new Date()   //12월20일 19시 43분이라면
+		oneul1.setDate(oneul1.getDate()+1) //12월 21일 19시 43분
+		                  //쿠키이름=쿠키값; 유효기간=...
+		document.cookie = "annaeCookie=kongji1;expires=" 
+		                    + oneul1.toUTCString() //객체.속성=값
+		                    //우리나라는 10시+9시간 = 19시 = 저녁7시
+	}//if-end //체크안되어 있으면 쿠키 만들지 않고 끝
+}//kajacookie()-end
+
+</script>
+
+</head>
+<body style="background-color : yellow;">
+<h3>오늘의 이벤트</h3>
+<pre>
+오늘 5시까지 3층 커피숍
+어쩌고
+저쩌고
+</pre><hr>
+
+<form name="f1">
+<input type="checkbox" name="chk1">
+지금부터 하루동안 창문 띄우지 않습니다
+</form>
+
+<!-- <div onclick="self.close()">닫기</div> -->
+<!-- 이 문장은 생략 : 크롬에서는 닫기기는 하지만 이벤트 unload연결이 안됨 -->
+
+</body>
+</html>
+
+
+<!-- 
+    개발자가 만든 .html 띄워 http://localhost에서 쿠키찾기
+    크롬 - 우클릭 - 검사 - 더보기 - application - Storage - cookie
+                    or
+    F12(개발자도구) - application(안보이면>>확장누름) - storage - cookies - 삭제는 x 엑박 (or http://localhost...- 우클릭 - clear)
+ -->

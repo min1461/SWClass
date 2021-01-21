@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+window.onload=function(){
+	kaja();
+}
+
+function kaja(){                    //쿠키명 = 쿠키값
+	if(document.cookie.indexOf("annaeCookie=kongji1") == -1){ //도큐먼트쿠키는 나한테 들어온 모든 쿠키를 다 가지고있
+		window.open("28_JS_Cookie.html","cookieWin2",
+				"width=370, height=300, top=20, left=350, location=no")
+	}
+	//alert("쿠키한번보자" + document.cookie);
+	//쿠키 있는 것 모두 확인해보기
+}
+</script>
+</head>
+<body style="background-color : cyan;">
+<h3>popup창열자</h3>
+<pre>
+여기는 본문이 있는 곳으로
+본문은 말 그대로 본문이다
+</pre>
+
+</body>
+</html>
+
+<!-- 
+    Cookie 스토리
+    작은파일, 광고
+    클라이언트 접속을 하면 쿠키를 생성 - 클라이언트로 전송 - 저장도 클라이언트
+    <자바스크립트 쿠키구조>(자바도 비슷함 => addCookie)
+    document.cookie="쿠키이름=쿠키값; 유효기간; 도메인; path;secure"
+    document.cookie="aa=bb;expires=;domain=;secure"
+
+    name=value;expires=
+    path:생성한 페이지에서만 cookie read
+    /라면 www.aa.com/ 이하의 모든 페이지에서 read 가능
+    secure : https 로 안전한 전송
+
+    
+
+
+    if(navigator........indexof("FireFox")) 현재브라우저가 뭔지
+    if(navigator.userAgent.indexOf("Chrome")!=-1){
+        alert("크롬");
+    }else{
+        alert("크롬은아니다.")
+    }
+ -->

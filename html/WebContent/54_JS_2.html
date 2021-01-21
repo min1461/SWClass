@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="./jquery-3.5.1.js"></script>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <h3>AJax kaja - 화면이 바뀌는가?</h3>
+        <br>
+        <textarea id="ta" cols="100" rows="20"></textarea>
+        <br>
+        <form>
+	        <div>이름 : <input type="text" id="name" size=20></div>
+	        <div>나이 : <input type="text" id="years" size=3></div>
+	        <input type="button" value="서버로 가자" onclick="kajaServer()">
+	        <input type="button" value="초기화" onclick="kajaClear()">
+        </form>
+    </body>
+    <script>
+        var xhr = null;
+        function getXHR(){  // xhr함수를 생성하는 메서드
+            try{
+                if(window.XMLHttpRequest){
+                    //xmlhttprequest를 사용가능한가?
+                    return new XMLHttpRequest;//ie11,ff,chrome
+                    //xmlhttprequest 객체 생성
+                }else if(window.ActiveXObject){//ActiveXObject 구버전
+                    return new ActiveXObject("MSXML2.XMLHTTP");//7,8
+                }else{
+                    return new ActiveXObject("Microsoft.XMLHTTP");//5이하
+                }
+            }catch(e){
+                xhr=null;
+            }
+        }
+
+        function kajaServer(){ // 서버로가는 함수
+	        var name = document.getElementById("name").value;
+	        var years = document.getElementById("years").value;
+            xhr=getXHR();// new xhr // xhr 객체 생성됨
+            xhr.onreadystatechange = callbackFunction;
+            // 초보개발자가 많이하는 실수부분! - 케멀케이징,파스칼케이징 X
+            // 전부 소문자로 작성하는 부분
+            // onreadystatechange라는 말은 XMLHTTP의 상태(readystate)가 변경될 때 마다(on change)라는 의미
+            xhr.open("get","kajaParam2.jsp?name="+name+"&years="+years,true);
+            // get방식 : 용량이 작고 내용이 보이는 것 <-> post방식
+            // https://mommoo.tistory.com/60
+            // 서버에있는 encodeURL(kaja.jsp)에게 전송할것
+            // true : 비동기(false는 안하니까 의미없음)
+            xhr.send(null);
+            // post방식일때는 null이 아니라 값이 와야함
+            // 전송
+        }
+
+        function callbackFunction(){
+            var ta = document.getElementById("ta");
+            switch (xhr.readyState) {
+            
+                /* 
+                case 0:
+                    ta.value += "객체 생성\n";
+                    // 안 나타남
+                    break;
+                case 1:
+                    ta.value += "send 메서드 사용전\n";
+                    break;
+                case 2:
+                    ta.value += "send 메서드 호출(사용함)\n";
+                    break;
+                case 3:
+                    ta.value += "아직 결과 다 안옴\n";
+                    break;
+                */
+                case 4:
+                    ta.value += "결과 다 왔다고 전해라\n";
+                    if(xhr.status==200){
+                        ta.value += "정상으로 옴\n";
+                        ta.value += xhr.responseText+"\n";// ↓ responseXML
+                    }/*<food><irum>사과</irum><price>2500</price></food>
+                    	xml은 구조적, 체계적이므로 전송데이터로 사용, 환경설정
+                    	단, xml은 html형식으로 변환*/
+                    else{//404,400...
+                        ta.value += "에러발생\n";
+                    }
+                    ta.value += xhr.status+"\t"+xhr.statusText+"\n";
+                          // 404 : file not found  // not found
+                    
+                    
+                    break;
+            }
+        }
+
+        function kajaClear(){
+            var ta = document.getElementById("ta");
+            ta.value="";
+            document.getElementById("name").value="";
+            document.getElementById("years").value="";
+        }
+    </script>
+</html>
+<!-- 
+    Ajax(Asinchronous javascript+xml) : 비동기 통신
+    페이지가 바뀜이 없이 서버와 통신
+    주로 많이 보는 것이 아이디 중복체크
+    
+    #일반 통신
+               rcv             rcv
+            ┌───────┐       ┌───────┐
+    ────────┘       └───────┘       
+       send            send
+
+    #비동기 통신(background 통신)
+               rcv             rcv
+            ┼───────┼       ┼───────┼
+    ──────────     ───────────       
+       send            send
+
+    ajax flow
+    client <====== request == xhr객체(xmlHttpRequest) =======> server
+    client <===== response == xhr객체(xmlHttpRequest) <======= server
+                                    └무조건 거침
+        ※ xhr 객체는 미리준비되어있으므로 객체만 생성하면 된다.
+
+        response 로 취급하는 값은 2가지 : text, xml
+        response 받는것이
+        text이면 메모장형식으로 작성 & jsp파일로 작성
+        xml이면 다시 html로 conversion(변환)해야 제대로 사용가능
+
+    ajax가 다루는 코드 : 기본이 UTF-8
+                        (but 예외는 jsp에서 euc-kr로 선언하면 취급)
+ -->
