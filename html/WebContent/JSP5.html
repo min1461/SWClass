@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>상품구매</h1>
+	<form action="JSP5_JSP.jsp" method="post">
+		<table border=2 width=500>
+			<tr>
+				<td colspan="2">제품종류번호 선택</td>
+			</tr>
+			<tr>
+				<td colspan="2"><select name="productnum" id="productnum1">
+						<option value="100-최신신상" name="100">100-최신신상</option>
+						<option value="200-이월상품" name="200">200-이월상품</option>
+						<option value="300-매장진열상품" name="300">300-매장진열상품</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td colspan="2">제품선택</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="checkbox" name="checkbox1"
+					value="구두">구두 <br> <input type="checkbox"
+					name="checkbox1" value="옷">옷 <br> <input
+					type="checkbox" name="checkbox1" value="가방">가방 <br> <input
+					type="checkbox" name="checkbox1" value="액세서리">액세서리 <br>
+					<input type="checkbox" name="checkbox1" value="무선이어폰">무선이어폰
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">구입방법</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="radio" name="payment" value="카드">카드
+					<br> <input type="radio" name="payment" value="현금">현금
+					<br> <input type="radio" name="payment" value="상품권">상품권
+				</td>
+			</tr>
+			<tr colspan="2">
+				<td><input type="submit" value="구입" width="300"></td>
+				<td><input type="reset" value="취소" width="300"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

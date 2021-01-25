@@ -63,12 +63,25 @@
 	<hr><br>
 	
 	Q4.구구단 출력<br>
-	<% 
-	for(int i=2;i<=9;i++){
+	<%
+		for (int i = 2; i <= 9; i++) {
+			out.println("<h3>" + i + "단</h3>");
+			for (int j = 1; j <= 9; j++) {
+				out.println(i + "x" + j + "=" + i * j);
+	%>
+	<br>
+	<% } %>
+		<br><br>
+	<% } %>
+	
+	Q5.구구단 출력(expression 사용)<br>
+	<%for (int i = 2; i <= 9; i++) {
 		out.println("<h3>"+i+"단</h3>");
-		for(int j=1;j<=9;j++){
-		out.println(i+"x"+j+"="+i*j);%>
-		<br>
+			for (int j = 1; j <= 9; j++) {%>
+			<%=i%> x <%=j%> = <%=i*j %>
+				
+	%>
+	<br>
 	<% } %>
 		<br><br>
 	<% } %>
