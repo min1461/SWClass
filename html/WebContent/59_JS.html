@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+</body>
+</html>
+<!-- 
+	웹 프로그램에는
+	client side : front-end, UI / html, css, javascript, jquery(javascript framework), ajax
+	server side : back-end, 서버에서 / jsp,servlet...el, jstl, 스프링부트
+	
+	JSP vs javascript
+	javascript : client side script language
+			html + <script></script>
+			html문법
+		예)
+			<script>
+			자바스크립트 문법
+			</script>
+			
+	JSP(Java Server Page) : server side script language
+			html + <% 자바언어 %>
+			html문법
+		예)
+			<% ====> scriptlet
+			자바 문법
+			%>
+			
+			(참고) 서버 쪽 servlet 을 사용
+			즉, 원래는 servlet을 사용함(사용이 복잡하고 어려움)
+			why?
+			jsp:html+자바
+			servlet:자바+html을 추가
+			예)out.println("<h1>....</h1>");
+			즉, 문장 전체가 자바로 구성된다.
+			
+	동적인처리
+	https://myblog.opendocs.co.kr/archives/400
+	웹클라이언트 <===================>웹서버
+	(웹브라우저) 	==> 	요청 .html
+				<==		응답
+	예) 자동주문으로 짜장, 짬뽕요청 - 이때 응답으로 계산금액은 총 12000원입니다.
+		=> 서버에서는 금액을 계산하는 별도의 로직이 필요
+		이때 사용하는 것이 자바로 [ 동적인 처리 ],
+		이렇게 서버에서 사용하는 자바프로그램을 servlet이라고 하며 thread를 사용하여 동작한다
+		
+	진행과정					(Business logic)
+							(Web Application Server)
+	웹브라우저 <====> 웹서버 ,====> WAS <====> DB
+			.html 		  .java .jsp
+			-presentation logic
+			-business logic
+	
+	참고) servlet은 .java => .class => 메모리로 로딩
+		JSP(.jsp-.html) => servlet(.java) => .class
+	참고) apache + tomcat
+	* apache
+	 -- 웹서버로 요청에 대한 정적 처리를 담당(.html)
+	 -- (예) apche가 있고, IIS
+	 
+	* tomcat
+	 -- 웹어플리케이션서버 (WAS, Web Application Server)로 동적 처리 담당
+	 -- (예) tomcat Web Logic, Web Sphere
+	 종로 3가 주문 ==> apche라는 웹서버 <-> 톰캣(WAS) (동적인 처리 : 계산)
+	 
+	 jsp 내장객체 9가지
+	 out, request, response, page, sesstion,
+	 application, exception, config, pageContext
+	 
+	 euc-kr vs utf-8
+	 euc-kr : 한글,영어 모두 2바이트로 표현,
+	 한글 2바이트로 한글이 많으면 메모리사용이 비교적 적다
+	 
+	 utf-8: 영어 1바이트
+	 		 한글,중국어 일어 3바이트
+	 		 나머지 2바이트
+	 		 한글3바이트로 한글이많으면 메모리 사용이 비교적 많아진다.
+ -->

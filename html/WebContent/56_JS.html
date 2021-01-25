@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="./jquery-3.5.1.js"></script>
+<script>
+	function kaja() {
+		$.ajax({ //$.ajax()  <= $.get , $.post
+			//url : "hello.jsp" , open(method,url,async(비동기))
+			//json기법(javascript object notation) 속성:값
+			url : "kaja.jsp",
+			data : {
+				name : "hong", // open,send, name:value
+				na2 : 35
+			},
+			//kaja.jsp?name=hong&na2=35
+			//<input type="text" name="name">	
+			dataType : "text",//responseText, responseXML
+			type : "get",//open
+			success : function(result1) {
+				alert("응답받는다." + result1);
+			},
+			error : function(xhr1, status) {
+				alert("에러상태:" + "\t" + xhr1.status);
+			}
+		});//$.ajax-end0
+	};//kaja()-end
+</script>
+</head>
+
+<body>
+	<h2>Ajax-jQuery</h2>
+	<input type="button" value="가자서버로" onclick="kaja()">
+</body>
+</html>

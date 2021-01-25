@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>ajax kaja (xml to html)</title>
+<script src="./jquery-3.5.1.min.js"></script>
+<script>
+   $(function() { //getJSON은 서버로부터 json 배열 형태를 get
+               //ajax-jQuery2.jsp에 있는, 형식은 string으로 받음
+      $.getJSON("kaja3.jsp", function(data1) {
+         $.each(data1, function(name1, value1) { //반복문
+            $("<h3></h3>").text(value1.title+" "
+                  +value1.price+" "+value1.evaluation).appendTo("div");
+         });
+      });
+   });
+   //이런 작업을 하겠다는것
+   //$("div").append(value1.tutle+" "+value1.price+" "+value1.evaluation);
+</script>
+</head>
+<body>
+   <h3>AJax Kaja</h3>
+   앞으로 만날 data교환에서는 json을 자주 만나게 될것이므로 <br>
+   json을 좀더 알아보자<br>
+   <br>
+   <div id=result></div>
+   <br>
+</body>
+</html>
