@@ -1,0 +1,36 @@
+<!--    EL(Expression Language) 사용
+   ${kab}은 자바표현식 <%=kab%> 과 같다
+   
+   remember : action tag <jsp:forward...>
+   
+   가능한 자바문법사용을 줄이기 위한 목적(가독성문제) 중의
+   하나로 사용(action tag, useBean...)
+   parsing이 간단해져서 비교적 속도빠름,
+   아주 복잡한 경우는 표현이 어려움
+   예) %>
+      <br>
+      <%}%>
+      
+   xml, json : 데이터 교환
+   xml
+   <food>
+      <title>사과</title>
+      <price>3000</price>
+   </food>
+
+   -------------------------------- 
+   
+   json
+   title:"사과",
+   price:3000
+   
+   -------------------------------- 
+
+   yeal(.yml)
+   title:
+      사과
+   price:
+      3000
+      
+      ==> <% %>라는 기호를 최소화하는것이 추세
+ --> -->

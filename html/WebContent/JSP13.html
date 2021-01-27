@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>request</title>
+</head>
+<!-- 다운로드 해볼것 -->
+<!-- https://m.blog.naver.com/okopok5019/221553342844 -->
+<body>
+	<h1>file upload</h1>
+	<form action="JSP13_upload.jsp" method="post"
+		enctype="multipart/form-data">
+		<!-- 외부파일인 cos.jar를 사용하려면 web-INF/lib에 존재해야함 (cos.jar의 multipart) -->
+		이름 : <input type="text" name="irum1"><br> 파일 : <input
+			type="file" name="file1"><br> 파일 : <input type="file"
+			name="file1"><br> 파일 : <input type="file" name="file1"><br>
+		<input type="submit" value="가자업로드로"><br> <input
+			type="reset" value="취소">
+	</form>
+</body>
+</html>
+<!-- 
+	# cos.jar 다운로드 및 설치
+	http://servlets.com/cos/에서
+	cos-26Dec2008.zip을 다운로드 후 압축풀기(cos-20.08.zip)
+	
+	압축 푼 폴더의 cos-26Dec2008/lib의 cos.jar 파일을 복사( cos-20.08.zip)
+	
+	/webContent/WEB-INF/lib/ 안에 넣는다
+	프로젝트이름-새로고침 (프로젝트명-마오-refresh(새로고침))
+	upload 전에 c: 에 uploadroom폴더를 하나 만든다
+	바탕화면에 올릴파일 하나(예: winter.jpg)준비한다
+ -->
