@@ -15,8 +15,8 @@
 			<option value="bag">가방(1개 50000)</option>
 			<option value="koodoo">구두(1개 70000)</option>
 			<option value="tie">넥타이(1개 15000)</option>
-		</select> <input type="text" name=cnt size=3>개 <br> <br> <input
-			type="submit" value="장바구니담기"> <input type="reset" value="취소">
+		</select> <input type="text" name=cnt size=3>개 <br> <br>
+		<input type="submit" value="장바구니담기"> <input type="reset" value="취소">
 
 	</form>
 </body>
