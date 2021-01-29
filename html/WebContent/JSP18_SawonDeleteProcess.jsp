@@ -7,35 +7,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사원 전체 명단</title>
+<title>사원 삭제</title>
 </head>
 <body>
-	<h1>사원 추가</h1>
+	<h1>사원 삭제</h1>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		TelInfoDAO tidao = new TelInfoDAO();
-		ArrayList<TelInfoVO> tiArray = tidao.getAllInfo();
+
+		String name = request.getParameter("name");
+
+		boolean b1 = tidao.delete_nametel(name);
+
+		if (b1) {
+			response.sendRedirect("JSP18_SawonAllView.jsp");
+		} else {
 	%>
-	<table border="2">
-		<tr>
-			<td>사번</td>
-			<td>이름</td>
-			<td>전화번호</td>
-			<td>입사일</td>
-		</tr>
-		<%
-			for (TelInfoVO imsi : tiArray) {
-		%>
-		<
-		<tr>
-			<td><%=imsi.getId()%></td>
-			<td><a href="SawonDeletProcessR.jsp?name=<%=imsi.getName()%>"><%=imsi.getName()%></a></td>
-			<td><%=imsi.getTel()%></td>
-			<td><%=imsi.getD()%></td>
-			<%
-				}
-			%>
-		</tr>
-	</table>
+	<a href="JSP18_SawonDeleteForm.jsp">사원삭제 에러 - 삭제화면으로</a>
+	<%
+		}
+	%>
+
 </body>
 </html>

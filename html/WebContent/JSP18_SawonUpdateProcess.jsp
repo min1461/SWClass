@@ -10,21 +10,21 @@
 <title>사원 전체 명단</title>
 </head>
 <body>
-	<h1>사원 전화번호 수정</h1>
+	<h1>사원 수정</h1>
 	<%
 		request.setCharacterEncoding("UTF-8");
 		TelInfoDAO tidao = new TelInfoDAO();
 
 		String name = request.getParameter("name");
-		String tel = request.getParameter("tel");
-		
+		String tel = request.getParameter("tel2");
+
 		boolean b1 = tidao.update_nametel(tel, name);
 
 		if (b1) {
 			response.sendRedirect("JSP18_SawonAllView.jsp");
 		} else {
 	%>
-	<a href="JSP18_SawonUpdateForm.jsp">사원입력 에러 - 입력화면으로</a>
+	<a href="JSP18_SawonInsertForm.jsp">사원 수정 에러 - 수정화면으로</a>
 	<%
 		}
 	%>

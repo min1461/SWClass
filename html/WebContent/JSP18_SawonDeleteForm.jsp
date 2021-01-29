@@ -11,14 +11,14 @@
 </head>
 <body>
 	<h1>사원 정보 삭제</h1>
-	<form action="JSP18_SawonDeleteProcess.jsp" method="post">
+	<form action="JSP18_SawonDeleteCheck.jsp" method="post">
 		<table>
 			<tr>
 				<td>이름</td>
 				<td><input type="text" name="name" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="추가하자" /></td>
+				<td colspan="2"><input type="submit" value="삭제하자" /></td>
 			</tr>
 		</table>
 
@@ -27,7 +27,7 @@
 				<td><a href="JSP18_SawonInsertForm.jsp">[입력]</a></td>
 				<td><a href="JSP18_SawonUpdateForm.jsp">[수정]</a></td>
 				<td><a href="JSP18_SawonDeleteForm.jsp">[삭제]</a></td>
-				<td><a href="JSP18_SawonAllView.jsp">[삭제]</a></td>
+				<td><a href="JSP18_SawonAllView.jsp">[전체보기]</a></td>
 			</tr>
 		</table>
 	</form>

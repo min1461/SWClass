@@ -10,19 +10,19 @@
 <title>사원 전체 명단</title>
 </head>
 <body>
-	<h1>사원 정보 입력</h1>
-	<form action="JSP18_SawonUpdateProcess.jsp" method="post">
+	<h1>사원 정보 수정</h1>
+	<form action="JSP18_SawonUpdateCheck.jsp" method="post">
 		<table>
 			<tr>
 				<td>이름</td>
 				<td><input type="text" name="name" /></td>
 			</tr>
 			<tr>
-				<td>전화번호</td>
+				<td>수정할 전화번호</td>
 				<td><input type="text" name="tel" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="전화번호수정하자" /></td>
+				<td colspan="2"><input type="submit" value="수정하자" /></td>
 			</tr>
 		</table>
 
