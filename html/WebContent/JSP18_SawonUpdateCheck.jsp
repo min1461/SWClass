@@ -29,15 +29,14 @@
 				<td>입사일</td>
 			</tr>
 			<tr>
-				<td><input type="text" name="id" value=<%=tv2.getId()%>
-					readonly></td>
+				<td><%=tv2.getId()%></td>
 				<td><input type="text" name="name" value=<%=tv2.getName()%>
 					readonly></td>
 				<td><input type="text" name="tel" value=<%=tv2.getTel()%>
 					readonly></td>
 				<td><input type="text" name="tel2" value=<%=tel2%> readonly>
 				</td>
-				<td><input type="text" name="sDate" value=<%=tv2.getD()%>
+				<td><input type="hidden" name="sDate" value=<%=tv2.getD()%>
 					readonly></td>
 			</tr>
 			<tr>

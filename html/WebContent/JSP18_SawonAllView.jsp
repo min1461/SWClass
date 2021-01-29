@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사원 전체 명단</title>
+<!-- ★★★★MVC1 모델 프로젝트★★★★ -->
 </head>
 <body>
 	<h1>사원전체명단</h1>
