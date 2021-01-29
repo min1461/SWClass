@@ -22,6 +22,9 @@
 				<td>F학점</td>
 			</tr>
 			<tr>
+				<td colspan="3"><%=request.getAttribute("reload") %></td>
+			</tr>
+			<tr>
 				<td colspan="3"><input type="submit" value="다른학생학점입력하러가기" /></td>
 			</tr>
 		</table>

@@ -43,8 +43,12 @@
 		1) sendRedirect():인자를 보내려면 get방식이면서 getparameter...등등 사용해야함 복잡
 		2) request.forward():scope로 인자를 보낼수 있음
 	 -->
-	 
-	 <%
+
+	<!-- 다른속성을 추가하고싶으면 request.setAttribute써서 가지고 올 수 있다. -->
+	<%
+	 	if(grade.equals("F")){
+	 		request.setAttribute("reload", "재수강하세요");
+	 	}
 	 	RequestDispatcher rd1 = request.getRequestDispatcher("/jsp18View/"+grade+".jsp");
 	 	rd1.forward(request, response);
 	 %>
