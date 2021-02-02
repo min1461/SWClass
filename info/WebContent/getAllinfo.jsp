@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<!-- 
+	<!-- 
 	MVC2  하는 방법
 	1) input ==> servlet ==> output
 	2) input ==> servlet ==> output(input과 output이 하나)
@@ -22,6 +22,21 @@
 				</form>
 			</td>
 		</tr>
+		<tr>
+			<td>사번</td>
+			<td>이름</td>
+			<td>전화</td>
+			<td>입사일</td>
+		</tr>
+		<c:forEach var="i" items="${requestScope.alist1 }">
+			<tr>
+				<td>${i.id }</td>
+				<td><a href="Telsearchone?name=${i.name }">${i.name }</a></td>
+				<td>${i.tel }</td>
+				<td>${i.d }</td>
+			</tr>
+		</c:forEach>
 	</table>
+	<a href="SawonInsert.jsp">[사원 입력]</a>
 </body>
 </html>
