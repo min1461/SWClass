@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/> -->
+<title>Insert title here</title>
+<style>
+img {
+	width: 300px
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+@media all and(min-width:320px) { /*mobile*/
+	#mq1 img {
+		width: 100%
+	}
+}
+
+@media all and(min-width:768px) { /*tablet*/
+	#mq1 img {
+		width: 50%
+	}
+}
+
+@media all and(min-width:1.24px) { /*pc*/
+	#mq1 img {
+		width: 25%
+	}
+}
+
+div {
+	font-size: 0;
+}
+</style>
+</head>
+<body>
+	<h1 align="center">학점계산</h1>
+	<!-- 서블릿:view에서는 출력 controller는 계산, 판단 -->
+	<div id="mq1">
+		<img src="./img/1.jpg"> <img src="./img/2.jpg"> <img
+			src="./img/3.jpg"> <img src="./img/4.jpg">
+	</div>
+	<form method="post" action="Hakjum">
+		<!-- 확장자없는 Ha=kjum은 서블릿으로 간다  //doPost()로-->
+		이름<input type="text" name="name"><br> 점수입력 <input
+			type="text" name="jum1"><br> <input type="submit"
+			value="가자서버로"> <input type="reset" value="취소">
+	</form>
+</body>
+</html>
