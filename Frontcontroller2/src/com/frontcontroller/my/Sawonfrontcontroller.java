@@ -3,6 +3,7 @@ package com.frontcontroller.my;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,130 +55,59 @@ public class Sawonfrontcontroller extends HttpServlet {
 		String name = null;
 		String tel = null;
 		String d = null;
+
+		excuteImpl h1 = null;
 		switch (c) {
 		case "/getAllinfo.do":
+			h1 = new excuteGetAllInfo();
 			try {
-				tidao1 = new TelInfoDAO();
-				alist1 = tidao1.getAllInfo();
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
+				h1.excute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			request.setAttribute("alist", alist1);
-			str = "getAllinfo.jsp";
+			str = "getAllInfo.jsp";
 			break;
 
 		case "/Telsearchone.do":
-			name = request.getParameter("name");
+			h1 = new excuteSearchOne();
 			try {
-				tidao1 = new TelInfoDAO();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				h1.excute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			try {
-				tv1 = tidao1.getInfo(name);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			request.setAttribute("tv1", tv1);
-
 			str = "getOneinfo.jsp";
 			break;
 
 		case "/SawonInsert.do":
-
-			id = Integer.parseInt(request.getParameter("id"));
-			name = request.getParameter("name");
-			tel = request.getParameter("tel");
-			d = request.getParameter("d");
-
-			// 계산 및 판단 즉, business logic 은 서블릿에서 한다.
+			h1 = new excuteInsert();
 			try {
-				tidao1 = new TelInfoDAO();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+				h1.excute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			try {
-				b = tidao1.insert_nametel(id, name, tel, d);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			if (b) {
-				request.setAttribute("result1", "추가good");
-			} else {
-				request.setAttribute("result1", "추가오류");
-			}
-
-			str = "result.jsp";
+			str = "getAllinfo.jsp";
 			break;
 
 		case "/Telupdate.do":
-			name = request.getParameter("name");
-			tel = request.getParameter("tel");
-			// 계산 및 판단 즉, business logic 은 서블릿에서 한다.
+			h1 = new excuteUpdate();
 			try {
-				tidao1 = new TelInfoDAO();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+				h1.excute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			try {
-				b = tidao1.update_nametel(tel, name);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			if (b) {
-				request.setAttribute("result1", "수정good");
-			} else {
-				request.setAttribute("result1", "수정오류");
-			}
-			str = "result.jsp";
+			str = "getAllinfo.jsp";
 			break;
 
 		case "/TelDelete.do":
-			name = request.getParameter("name");
+			h1 = new excuteDelete();
 			try {
-				tidao1 = new TelInfoDAO();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				h1.excute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			try {
-				b = tidao1.delete_nametel(name);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			if (b) {
-				request.setAttribute("result1", "삭제good");
-			} else {
-				request.setAttribute("result1", "삭제오류");
-			}
-			str = "result.jsp";
+			str = "getAllinfo.jsp";
 			break;
+
 		}
 
 		RequestDispatcher rd1 = request.getRequestDispatcher(str);
