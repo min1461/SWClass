@@ -23,10 +23,8 @@
 				<td><input type="text" value="${tv1.d }" name="d" /></td>
 			</tr>
 			<tr>
-				<td colspan="4">
-					<input type="submit" value="수정 " />
-					<input type="reset" value="취소" />
-				</td>
+				<td colspan="4"><input type="submit" value="수정 " /> <input
+					type="reset" value="취소" /></td>
 			</tr>
 		</table>
 	</form>
