@@ -96,7 +96,6 @@ public class Sawonfrontcontroller extends HttpServlet {
 			name = request.getParameter("name");
 			tel = request.getParameter("tel");
 			d = request.getParameter("d");
-
 			// 계산 및 판단 즉, business logic 은 서블릿에서 한다.
 			try {
 				tidao1 = new TelInfoDAO();
@@ -158,16 +157,13 @@ public class Sawonfrontcontroller extends HttpServlet {
 			try {
 				tidao1 = new TelInfoDAO();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				b = tidao1.delete_nametel(name);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

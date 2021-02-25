@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <body>
 	<h2>scriptlet</h2>
 	<%
@@ -14,3 +19,4 @@
 	${param.irum1 }가 ${param.irum2 }에게 말하기를 <br>
 	${"이안에 너있다. "}<br>
 </body>
+</html>
