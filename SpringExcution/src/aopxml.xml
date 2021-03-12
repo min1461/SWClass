@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+   <!-- 공통(aspect), 핵심 (target)로직에 대한 처리 방식을 알려준다  -->
+   <aop:aspectj-autoproxy/>
+   <!-- 27번줄부터 기술되어있는것 대신 사용 & Security.java에 pointcut,before을 따로 기술해야함 -->
+                              <!-- Security는 공통기는(aspect) -->
+   <bean name="securityBean" class="helloProcess.Security"/>
+   <bean name="helloProcessBean" class="helloProcess.HelloProcess"/>
+                           <!-- HelloProcess 핵심기능 (target) -->
+   
+   <!-- aop태그를 적는방법 
+      
+   <beans>
+      <bean></bean>
+      <bean></bean>
+      
+      <aop:config>
+      </aop:config>
+   </beans>
+   -->
+   
+      <!-- aop구성 시작 - 이것은 xml (no annotation)-->
+   <aop:config>  <!--  aspect가 들어오면 공통기능 !  -->
+      <aop:aspect id="securityAspect" ref="securityBean">
+         <aop:pointcut expression="within(helloProcess.HelloProcess)" id="secuPoint"/>
+         <aop:before pointcut-ref="secuPoint" method="goSecurity"/>
+      </aop:aspect>
+   </aop:config>
+      <!-- 즉, helloProcess.HelloProcess에 있는 모든 메소드가 실행되려고 하면 
+      그전에 goSecurity라는 메소드가 먼저 수행되고 나서 수행된다-->
+</beans>

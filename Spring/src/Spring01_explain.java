@@ -162,5 +162,449 @@ public class Spring01_explain {
  * 자바버젼<java.version>1.8</java.version>앞에 메이븐 플러그인 버전을 써줌
  * 예) <maven-jar-plugin>3.1.1</maven-jar-plugin>
  * <java.version>1.8</java.version>
+ * 
+ * 결합도
+ * 결합도와 팩토리
+ * factory : 객체 생성을 처리하고 리턴해주는 클래스
+ * 결합도 : 클래스의 변경사항이 다른 클래스에게도 영향미치는 정도
+ * factory패턴은 객체를 직접생성하지 않고 factory method class로 객체를 생성한 후
+ * 리턴 받으므로 결합도가 낮아 유지보수에 용이함
+ * 
+ * (예) 결합도가 높은 경우
+ * - new를 사용하여 AA,BB,CC가 변경되면 복합class내용 줄줄이 변경해야함
+ * class AA{void kajaAA()}
+ * class BB{void kajaBB()}
+ * class CC{void kajaCC()}
+ * 
+ * class bokhap{
+ * AA aa = new AA();
+ * BB bb = new BB();
+ * CC cc = new CC();
+ * 
+ * void cheori(){
+ * aa.kajaAA(); bb.kajaBB(); cc.kajaCC();
+ * 		}
+ * }
+ * 
+ * (예) 결합도가 낮은 경우(결압도높은것에 비해 수정범위가 좁혀진다)
+ * class kwailFactory{
+ * mukja(String moya);
+ * }
+ * 
+ * class Kwail extends kwailFactory{
+ * 	mukja(String moya){
+ * 		if(kwil2.equals("사과")){
+ * 			return new AA();
+ * 		}else if(kwil2.equals("배")){
+ * 			return new BB();
+ * 		}
+ * 	}
+ * 
+ * ==> 스프링은 결합도가 낮은 방식을 사용
+ * 1) 다른 곳에서 new를 해서 기본소스로 넣어준다(역방향)
+ * 2) 연관성이 적은 xml을 사용하여 처리한다.
+ * 이것이바로 'DI'
+ * 
+ * ------------------------------------------
+ * 기존 class안에서 new 객체생성
+ * 
+ * but,
+ * spring에서는
+ * xml환경설정파일에서 "객체를 생성"하고
+ * 실행시에는 그 객체들을 갖다 쓰겠다
+ * 즉, new는 어디서? xml파일에서 한다 그리고 그 new한 것을 불러다 사용하겠다
+ * (참고) xml 체계적 : 전송, 환경설정시 사용
+ * 
+ * DI(Dependency Injection,의존성 주입) 작성 방식
+ * spring의 bean
+ * 스프링에서 객체생성시 bean객체(empty x)라고 표현함
+ * 표현방법은 xml 태그를 사용하여
+ * <bean id="bangkaBean1" class="bangka.Bangka1"/>
+ * 또는
+ * <bean>.............</bean>
+ * 이며
+ * id에는 객체명을 쓰고 class에는 패키지명,클래스명을 쓴다
+ * useBean
+ * 
+ * 이는 기본 자바객체형태로 본다면 다음과 같은 의미이다.
+ * package bangka;
+ * Bangka1 bangkaBean1 = new Bangka1();
+ * 
+ * "spring에서는 객체 생성시 .xml파일에다가 new없이 bean객체를 사용한다"
+ * ==> 작성된 형태
+ * namespace : 이름공간
+ * xml namespace // 이름공간,xml문법,까다롭다
+ * <bean xmlns=....>
+ * <bean xmlns=....>
+ * <bean id="bangkaBean1" class="bangka.Bangka1"/>
+ * </bean> ==>new 대신에
+ * 
+ * <bean xmlns=....>
+ * <bean id="bangkaBean2" class="bangka.Bangka1"/>
+ * </bean>
+ * 
+ * Spring은 외부 환경설정파일에서 객체를 선언하고 그것을 불러 써보자
+ * - Object Factory vs ApplicationContext
+ * (1) Object Factory
+ * 		DAO Factory로 직접적인 "객체생성"을하고 처리하는 경우
+ * (2) ApplicationContext
+ * 		IoC container, Spring container, BeanFactory를 의미
+ * 		ApplicationContext는 객체에 대한 생성정보등을 받아 관리
+ * 
+ * 		IoC 컨테이너(Inversion of Control, 제어의 역전 container)
+ * 		Bean 객체의 lifecycle을 관리 즉, 객체를 생성, 관리 및 소멸을 ApplicationContext가 함
+ * 			재사용이 좋다
+ * 			XML등의 메타정보로 관리
+ * (참고) servlet container : 서블릿의 lifecycle을 관리
+ * 
+ * getBean()메소드 : Bean 객체 생성 및 초기화 제거등을 관리함
+ * spring - beans - ...jar
+ *  ㄴorg.springframework.beans.factory
+ *  	ㄴ BeanFactory.class
+ *  		ㄴ getBean()
+ *  
+ *  DI(Dependency Injection, 의존성 주입)
+ *  Spring에서 BeanFactory(bean 생성 및 제어) 가 기본 IoC 컨테이너,
+ *  보다 향상된 것이 ApplicationContext 컨테이너(beanfactory+어플리케이션추가지원)
+ *  (IoC container,Spring container,BeanFactory)
+ *  IoC 컨테이너에 의해 Bean의 생명주기가 관리된다.
+ *  (참고) spring bean 객체 : 
+ *  (=POJO 즉, 종속되지 않은 자바 클래스로 "simply a java object" 번역하면 "자바객체"
+ *  이때 XML 설정을 통해 각각의 Bean 들을 묶어주는데 wiring이라고 한다
+ *  묶여진 Bean을 원하는 곳에 적용하는 것을 DI(의존성주입)이라고부른다.
+ *  즉, "DI 의존성주입"이란 "객체를 생성해서 필요로 하는 곳에 넣어주는 것"
+ *  
+ *  설정 메타데이터(configuration metadata)
+ *  개발자가 스프링컨테이너에게 객체 생성 방법등을 알려주기위해 사용하는 메타정보를 말함
+ *  주로 다음 3가지로 알려줌
+ *  1) xml 기반 설정 메타데이터
+ *  <beans ...></beans> 로 구성
+ *  2) annotaion기반 설정 메타데이터 (스프링2.5부터 시작)
+ *  3) 자바기반 설정 메타데이터 (스프링 3.0부터 시작)
+ *  
+ *  ==>서블릿
+ *  page > request > session > application
+ *  
+ *  spring의 scope
+ *  스프링 bean객체는 singleton이 default
+ *  <Bean XML 설정>
+ *  scope 설정 : IoC Container에 의해 관리되는 Bean의 기본범위는 singleton(전역) 이며, scope 속성으로 각각 다르게 지정함
+ *  <1> singleton(기본값) : 한개의 bean객체를 사용
+ *  IoC Container 내에서 유일한 객체로 생성하는 범위
+ *  객체 필요시 하나로 사용함 (전역인스턴스)
+ *  why? 메몰 ㅣ낭비 방지, web의 경우 서버로 들어오는 request마다 객체를 만들면 안되므로
+ *  bean을 singleton으로 만들고 쓰레드에서 공유하여 사용하도록 함
+ *  기본값이므로 작성시 생략가능함
+ *  <bean id="bangkaBean1" class="bangka.Bangka1" scope="singleton">
+ *  <bean id="bangkaBean1" class="bangka.Bangka1">
+ *  
+ *  만일 annotation 기법으로 하면 (설정 메타데이터 : configuration metadata)
+ *  @webservlet()//서블릿에서...........라는뜻인데
+ *  @Scope("singleton") //xml을 사용안한다면
+ *  class Bangka1 {클래스가 준비되어 있을때
+ *  }
+ *  
+ *  prototype : 호출때마다 getBean()에 따라 새로운 인스턴스생성
+ *  (즉, 객체가 따로 생성되는 방식으로 bean을 사용할때마다 bean객체생성)
+ *  scope="prototype"라고입력
+ *  singleton은 하나의 객체이므로 따로 출력일때는 o
+ *  만일 동시에 출력할경우는 문제발생
+ *  <3> request : spring-mvc(스프링웹)에서 HTTP요청시마다bean객체를 생성하며 요청후 제거됨
+ *  <4> session : spring-mvc에서 HTTP-세션마다 객체를 생성하고 user"브라우저를 닫기전"까지 유지됨
+ *  globalSession : portlet지원
+ *  타이틀바
+ *  [증권정보][뉴스][날씨]
+ *  버튼
+ *  
+ *  Q) non-maven 프로젝트로 singleton, prototype 연습하기
+ *  
+ *  사원에 대한 vo를 만들고 메인에서 이를 이용하여 다음처럼 출력되도록 작성하시오
+ *  필드 private int id;
+ *  private String irum;
+ *  getter/setter/toString()도 만들어야한다
+ *  mainpkg,sawonpkg(vo),xml작성
+ *  ==출력디자인==
+ *  사원id는3,이름은연수라는
+ *  사원아이디는 5, 이름은 태식 ~  사원아이디는 5, 이름은 태식 ~
+ *  사원아이디는 5, 이름은 태식 ~  사원아이디는 5, 이름은 태식 ~  사원아이디는 7, 이름은 수빈~
+ *  
+ *  jsp useBean
+ *  sawon1.setIrum*"세젤예는 누구? 나!");
+ *  sawon1.setNa2("24");
+ *  ==> 자바를 자바가 아닌것처럼 하는 것은?
+ *  action tag,taglib el
+ *  <jsp:setProperty name="sawon1" property="irum" value="세젤예는 누구? 나!"/>
+ *  <jsp:setProperty name="sawon1" property="na2" value="24"/>
+ *  ==> setIrum("세젤예는누구? 나!"),setNa2("24")
+ * 
+ *  <jsp:getProperty name="sawon1" property="irum"/><br>
+ *  <jsp:getProperty name="sawon1" property="na2"/><br>
+ *  ==> getIrum(),setNa2()
+ *  
+ *  Setter Injection : setter 메소드를 이용 하여 인자를 전달
+ *  remember : Java Beans useBean,property....
+ *  .setIrum("이서준");
+ *  
+ *  2)Constructor Injection(생성자 주입)
+ *  생성자에 필요 객체를 선언하고 멤버변수(Field)로써 객체를 사용하는 경우처럼 사용
+ *  
+ * ===============================================================
+ * 
+ *  property에 대한 설명은 [  ] => 
+ *  
+ *  2월말일자
+ *  [				수업다시듣기				]
+ *  
+ *  constarg/Constarg.java를 작성하여 insa 객체참조변수(insabean객체)를 받을 수 있도록 프로그램을 작성하시오( 생성자 인젝션 방식으로 )
+ *  
+ *  bean태그없이 자동 bean등록하기
+ *  <context:component-scan="패키지" /> 태그로 사용 가능
+ *  .xml에서 context:component-scan, AND
+ *  @component, @Value등을 사용하면 다른 설정없이 자동 bean 등록이 가능
+ *  -- spring-context-4.1.7.jar
+ *  
+ *  (살펴보면)
+ *  new로 객체를 생성 > bean > bean 작성이 x
+ *  how???
+ *  <context:component-scan="패키지"/> 와
+ *  @component,@Value등을 사용
+ *  
+ *  - 클래스 위에 @Component : XML 별도설정없이
+ *  자동 bean 등록(@Component("name")이름 지정 가능)
+ *  @Component 는 <bean> 객체 역할로 @component가 해당 자바클래스를 spring bean이라고 알려주며 해당 클래스를 ApplicationContext에 bean으로 등록시킴
+ *  (.xml namespaces탭에서 context체크 필요)
+ *  
+ *  @Autowired vs @Resource
+ *  - Autowired : type 기반으로
+ *  자동 injection 대상에 @Autowired 사용
+ *  xml설정에 <context:annotation-config/> 설정추가
+ *  -@Resource : 이름 기반
+ *  
+ *  @Autowired 는 <property>나 <construct-arg> 역할로
+ *  자동으로 같은 이름의 bean을 찾아 injection 그러므로 setter, 생성자 선언 필요없음
+ *  
+ *  <context:annotation-config/>는
+ *  이미 "등록되어 있는" bean에 대해서만 annotation을 활성화함
+ *  그러므로 "bean객체 선언"을 해야함
+ *  
+ *  저쪽에서도 @Autowired도 추가해야 한다.
+ *  참조변수와 mapping 및 bean 객체가 명시적으로필요할때는
+ *  <context:annotation-config /> 와 @Autowired 등을 연동하여 사용한다는 것
+ *  (단, @Autowired는 해당 type bean 객체가 없거나 여러개 있으면 에러)
+ *  namespaces 에서 context에 체크해야
+ *  <context:annotation-config/>를 보면 .java에서
+ *  @Autowired 등이 사용됨을 짐작함
+ *  ==> Insa.8Line
+ *  
+ *  <<<<<<<<<<<<<<<   AOP   >>>>>>>>>>>>>>>
+ * AOP: Aspect Oriented programming( 관점지향 프로그래밍)
+ * 핵심기능과 공통기능을 구분하여 재사용 기능을 높임
+ * 코드 수정없이 공통기능 사용    
+ * 
+ * AOP용어
+ * Weaving :핵심기능과 고통기능(Aspect)을 묶어주는것     
+ * 
+ * Advice: 언제 콩통기능을 적용할지 정의 
+ * Before: 메소드 호출전에 공통기능실행
+ * After: 메소드 실행후 무조건 고통기능 실행 
+ * After Returning: 메소드가 exception없이 실행된 후에 공통기능실행
+ * After Throwing: exception발생한 경우 공통기능 실행 
+ * Around: 메소드 실행전,후 exception 발생시점에 공통기능 실행
+ *         
+ * Joinpoint: 언제호출할지를 결정하는것 
+ * Advice 적용 가능한 지점, 스프링은 메소드호출만 지원)    
+ * 
+ * Pointcut: 실제로 Advice가 적용되는 Joinpoint    
+ * 
+ * AOP실습시 추가로 jar파일 필요 
+ * non maven의 경우, maven의 경우
+ * 추가할 jar 파일 
+ * SecurityBean에러시 jar파일이 없는경우 
+ * ㄴ non maven은 직접추가 
+ * com.springsource.org,aspectj.weaver-1.6.8.RELEASE.jar추가해야        
+ * 
+ * weaving : 공통과 핵심을 연결실행하는 과정으로 
+ * 실행점에 따라 compile time , run time , load time        
+ * 
+ * AspectJ는 자바 AOP의 표준을 말하며 PARC에서 개발 
+ * 1)aspect + 소스코드후 weaving하는 Compil Time Weaving(CTW)
+ * 2)class파일이 JVM에 로드시까지 기다렸다  weaving하는 Load Time Weaving(LTW)
+ * 3)spring AOP 에서 사용하는 방식 ( RTW:runtime Weaving) -proxy를 생성해서
+ * 
+ * maven 에서 aspectj 사용해보기 
+ * pom.xml에 aspectjrt와 aspectjweaver추가가 필요하다 
+ * aspectjrt : aspectj사용을 위해 asppectj runtime라이브러리가 필요
+ * aspectjweaver : aspect의 정보를 바탕으로 aspect를 구성한 코드를 생성하는데 필요한 유틸리티 프로그램         
+ * 
+ * 아래 2개를 mvnrepository를 사용하여 add dependecy 한다
+ * dependency>
+ * groupId>org.aspectj</groupId>
+ * artifactId>aspectjrt</artifactId>      
+ * ㄴ Aspectj를 사용하여 프로그램을 실행하기위해
+ * version>1.8.2</version>
+ * </dependency>
+ * dependency>
+ * groupId>org.aspectj</groupId>
+ * artifactId>aspectweaver</artifactId>      
+ * ffㄴ 실행할때 클래스 로딩을 위해 
+ * version>1.8.2</version>
+ * </dependency>
+ * 
+ * ===============================================================
+ * 
+ * <Expression 3가지 속성> ==> weaver.jar파일이 필요함
+ * (execution, within, bean)
+ * ## execution : 기본
+ * 형식 execution([public등 - 생략가능] return type [클래스명|메소드명] (parameter))
+ * 
+ * #expression = "excution(Double helloProcess.HelloProcess.cheori())"
+ * ==> return type Double 인 HelloProcess의 cheori()메소드
+ * 
+ * #execution(Public void cheo*(..))
+ * ==> return type이 void, cheo로 시작하는 메소드, parameter는 0개이상
+ * 
+ * #execution(*hello.hello1.*.*())
+ * ==> hello.hello1패키지의 parameter 없는 모든 메소드들
+ * 
+ * ## Within : 메소드가 아닌 특정 클래스 타입에 속하는 메소드를 PointCut으로 설정
+ *  
+ *  # <aop:pointcut expression="within(helloProcess.HelloProcess)"
+ *  -->HelloProcess클래스의 모든 객체들의 모든 메소드
+ * 
+ * #Within(helloProcess.*)
+ * ==> helloProcess 아래의 모든 메소드들
+ * 
+ * #Within(hello1..*)
+ * hello1아래 아래 패키지의 모든 메소드들
+ * 
+ * =================================================================================
+ * DB 개요
+ * jdbc, datasource(connection pool), jdbctemplate(spring db)
+ * myBatis(직접적인 자바 + sql 스타일 배제, 분리해서 mapping으로 처리), Hibernate(객체와 db를 xml로 mapping)
+ * 
+ * DB 상세
+ * JDBC
+ * Java Database Connectivity
+ * - DB에 SQL명령을 전달하고 그 수행결과를 받아오는 일을함
+ * - connection con1
+ * getConnection()... 등을 사용
+ * 
+ * datasource(connection pool)
+ * #Connection Pool
+ * - 미리 여러개의 Connection을 만들어 놓고 수행시키는 것
+ * - db 와 연결하는 connection을 미리 생성하여 커넥션 창고인 connection pool에 저장해 둔 다음 
+ *   연결이 필요한 프로그램이 pool에서 connection을 꺼내 사용한 다음 사용이 끝나면 다시 connection pool에 반환한다.
+ *   
+ * - connection을 요청에 따라 그때마다 매번 생성하는 것에 비해 커넥션을 미리 생성해 두무르 응답속도를 비교적 빠르다
+ *   모든 요청자에 대하여 connection을 모두 생성해주는 형식은 사용자가 몰리면 overhead가 발생하지만
+ *   connection pool은 poll에 만들어지는 connection의 max값을 미리 지정하므로 과부하를 줄일 수 있다.
+ * 
+ * Datasource
+ * - ConnectionPool을 관리
+ * - 이것때문에 ConnectionPool생성이나 드라이버 로딩등의 별도 작업이 필요없다.
+ * 
+ * * JDBCTemplate(spring db)
+ * JdbcTemplate
+ * - spring-jdbc....jar,spring-tx...jar파일필요
+ * (참고) spring-tx...jar:configure build path에러나는 경우
+ * 즉, DAO예외예러는 이 jar파일에 있으므로
+ * 
+ * - JdbcTemplate는 JDBC를 사용하여 DAO를 만드는데 이용이되는 표준기술(spring의 DB)
+ * 
+ * - PSA 기술 중의 하나이다
+ * (POJO개발을 위한 대표적인 3가지 기술 - DI, AOP, PSA)
+ * --PSA : Portable Service Abstractions(포터블 서비스 추상화)
+ * 기술적인 변화나 환경의 변화가 발생해도 일관성을 유지하는 기술
+ * (예) 원천적인 기술원리에는 상관없이 기술의 동작부분만을 사용하면 된다
+ * 
+ * - 반복되는 형태의 DB Connection의 작성 및 연결이 없다
+ * (반복되는 code를 제거하기 위한 template class를 지원함)
+ * 
+ * 
+ * - RowMapper interface를 사용한다
+ * SQL실행 ==> ResultSet 종이박스
+ * ==> RowMapper가 while(rs.next())일을 대신하여
+ * list 자바객체로 전환하는 일을 담당한다
+ * 
+ * (참고) MyBatis에서는 RowMapper없이
+ * SqlSesstion이 list 자바객체로 전환시키는 일을 한다.
+ * 
+ * ##Mybatis
+ * - 자바 + DB (자바따로, sql따로)를 위한 프레임 워크
+ * -자바객체와 sql을 매핑하는 방식 
+ * -재사용성을 위해 자바와 sql언어를 분리함   (sql을 xml에서 별도 처리) 
+ *    (참고 jsp 에서 <...http:// java.sun.
+ *    	mybatis -->import ..iBatis
+ * 
+ * ##Hibernate
+ * - JPA(Java Persistent API)를 구현한 프레임워크중 하나로
+ * 객체와 DB Table을 xml파일로 mapping하는 자바기반의 ORM(Object Relationship Mapper)
+ * (참고) c#-db연동 (Visual Studio)
+ * - myBatis보다 조금더 간결한 코드
+ * - DB가 변경된다 할지라도 SQL 스크립트를 변경하지 않아도 된다
+ * - connection pool을 지원함
+ * - select * from... 같은 CRUD SQL을 직접사용하기보다 AA테이블과 AA객체가 Mapping인경우 AA.findAll()사용하여 조회
+ * - 잘모르고 사용하면 data에 문제가 발생할 가능성이 높다.
+ * 
+ * [						]
+ * 
+ * (참고) iBATIS ==> MyBatis 로 변경후  달라진것
+ * - apache project team ==> google code team으로
+ * - 2.5 version 부터 MyBatis
+ * - dtd(Document Type Definition : xml의 구조를 정의한것)==http://mybatis.org/dtd/mybatis-3-mapper.dtd
+ * - jdk 1.5이상
+ * - #id# ==> #{id} (jdbc에서는 ?역할)
+ * - parameterMap ==> parameterType
+ * - com.iBATIS... ==> org.apche.ibatis
+ * - sqlMap ==> Mapper
+ * - sqlMapConfig ==> Configration
+ * - resultClass ==> resultType
+ * - sqlSessionFactory, sqlSessionTemplate 설정
+ * - 네임스페이스 <mapper namespace="패키지.매퍼">
+ * 
+ * mybatis포함 구조도
+ * mybatis - DAO - Service - Controller - (model) - view - 결과나옴
+ * 			(SessionTemplate)
+ * 
+ * jdbc vs mybatis
+ * jdbc = java(with) sql
+ * mybatis = java(.java) - (mapping) - sql(xml에 수록)
+ * 
+ * MyBatis 작성하는 두가지 방법
+ * 1) 스프링에서 sqlSession 직접사용
+ * 2) 스프링에서 interface만들고 사용(getMapper)
+ * (3.0부터 sqlSession 직접사용보다 안정적)
+ * spring boot : xml x, 자동설정
+ * 
+ * ######## MyBatis return 값 비교
+        select : 해당결과
+        insert : 1
+        update : update 처리된 행수
+        delete : delete 처리된 행수
+
+        (참고) iBATIS
+        select : 해당결과
+        insert : null
+        update : 1
+        delete : deletee 처리된 행수
+        (비교) oracle로 자바를 작성해도 java.sun이 보이는 경우와 같다.
+ * 
+ * <참고> 톰캣 에러 대처하기 2
+ * 자식 컨테이너...spring-web 2번, .... 이런에러시
+ * 1) jar파일 모두 지우고 다시 넣어본다
+ * 2) web.xml에 display-name아래 absolute-ordering 넣어본다
+ * 
+ * <display-name>Spring myBatis</display-name>
+ * <absolute-ordering />
+ * 
+ * mapper.xml 작성하려면
+ * - help- eclipse marketplace - find 칸에 [ mybatipse ] 입력 - mybatipse 1.2.3 - install 누름
+ * 
+ * 그런다음 .xml을 만들 경우 우클릭 - other - mybatis폴더에서 mybatis xml mapper로 작성
+ * (참고) 만일 eclipse marketplace 플러그인이 안되면
+ * help - install new software - http://dl.bintray.com/harawata/eclipse/를 입력하여 플러그인
+ * 
+ * 참고) 간단하게 -config.xml도 이걸로 작성후 mapper부분을 수정해도 됨(필요시에만)
+ * 이파일은 src에서 작성
  */
 }
