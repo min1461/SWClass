@@ -15,9 +15,10 @@ import com.empmanage.sawon.vo.SawonVO;
 public class SawonServiceImpl implements SawonService {
 
 	@Autowired
-	private SawonDAO sawonkaja;  //new SawonDAO()°³³ä 
+	private SawonDAO sawonkaja;  //new SawonDAO()ï¿½ï¿½ï¿½ï¿½ 
 
 	@Override
+	
 	@Transactional
 	public ArrayList <SawonVO> getAllSawon() {
 		return sawonkaja.getAllSawon();

@@ -243,4 +243,18 @@ package staruml;
  * 		서버구축, db설계, 프로그램 작성
  * 		예) 준비된 설계또와 재료대로 땅을 파고 그네를 설치
  * - 운영 및 지원(operation and support)
+ * 
+ * 요구사항 개발 프로세스
+ * 소프트웨어공학 지식체계(SWEBOK:SoftWare Engineering Body of Knowledge)에서는 이 프로세스를
+ * 도출(Elicitation), 분석(Analsysis), 명세(Specification), 확인(Validation)으로 구분하고 있다
+ * (http://www.computer.org/web/swebok)
+ * 
+ * 요구사항 확인 기법
+ * 요구사항 검토
+ * 프로토타이핑
+ * 모델검증
+ * 인수 테스트
+ * 
+ * 시장성숙도 및 트렌드 부합성
+ * 기술적위험 분석
  */
